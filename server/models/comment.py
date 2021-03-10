@@ -9,3 +9,5 @@ class Comment(db.Model, BaseModel):
 
     link_id = db.Column(db.Integer, db.ForeignKey('link.id', ondelete="CASCADE"))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
+
+    # ! we might need to add date edited here

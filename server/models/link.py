@@ -16,6 +16,10 @@ class Link(db.Model, BaseModel):
     importance = db.Column(db.String(40), nullable=False)
 
 
+    # Foreign keys
+    folder_id = db.Column(db.Integer, db.ForeignKey('folder.id', ondelete="CASCADE"))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
+
 
     # # * FOR CASCADING DELETION:
         # ! Add the cascade keyword with all and delete.
