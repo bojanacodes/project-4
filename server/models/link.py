@@ -17,7 +17,7 @@ class Link(db.Model, BaseModel):
 
 
     # Foreign keys
-    folder_id = db.Column(db.Integer, db.ForeignKey('folder.id', ondelete="CASCADE"))
+    folder_id = db.Column(db.Integer, db.ForeignKey('folders.id', ondelete="CASCADE"))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
 
 
