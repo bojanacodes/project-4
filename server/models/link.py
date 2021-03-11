@@ -18,13 +18,13 @@ class Link(db.Model, BaseModel):
 
 
     # Foreign keys
-    folder_id = db.Column(db.Integer, db.ForeignKey('folders.id', ondelete="CASCADE"))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
+    # folder_id = db.Column(db.Integer, db.ForeignKey('folders.id', ondelete="CASCADE"))
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
 
 
     # # * FOR CASCADING DELETION:
         # ! Add the cascade keyword with all and delete.
-    #comments = db.relationship('Comment', backref='link', cascade="all, delete")
+    comments = db.relationship('Comment', backref='link', cascade="all, delete")
 
     tags = db.relationship('Tag', backref='links', secondary=links_tag_join)
 
