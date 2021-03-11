@@ -1,66 +1,58 @@
+from app import db, bcrypt
+from models.base import BaseModel
+from models.folder import Folder
+from models.users_folder import users_folder_join
+# from models.link import Link
+from sqlalchemy.ext.hybrid import hybrid_property
+import jwt
+from datetime import *
+from config.environment import secret
 
-# # ! import my database
-# # ! Import bcrypt
-# from app import db, bcrypt
-# # ! extend from base model
-# from models.base import BaseModel
-# # ! Import hybrid property from sqlalchemy
-# from sqlalchemy.ext.hybrid import hybrid_property
+class User(db.Model, BaseModel):
 
-# # ! Import the pwjwt library.
-# import jwt
+    __tablename__ = 'users'
 
-# # ! Import everything from datetime module
-# from datetime import *
+    username = db.Column(db.String(15), nullable=False, unique=True)
+    email = db.Column(db.Text, nullable=False, unique=True)
+    #! check how to add is_admin as db.Boolean
+    # is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
-# # ! import secret
-# from config.environment import secret
-
-# class User(db.Model, BaseModel):
-
-#     __tablename__ = 'users'
-
-#     username = db.Column(db.String(15), nullable=False, unique=True)
-#     email = db.Column(db.Text, nullable=False, unique=True)
-
-#     password_hash = db.Column(db.String(128), nullable=True)
+    password_hash = db.Column(db.String(128), nullable=True)
 
     
-#     # ? Create a relationship field to comments
-#     comments = db.relationship('Comment', backref='user', cascade="all, delete")
+    # ? Create a relationship field to comments
+    comments = db.relationship('Comment', backref='user', cascade="all, delete")
 
-#     # ! Bojana -  do we wanna delete all the link when we delete user? I would say not Same with links, right?
+    # # ? Create a relationship field to links
+    links = db.relationship('Link', backref='user')
 
-#     # # ? Create a relationship field to cakes
-#     # cakes = db.relationship('Cake', backref='user', cascade="all, delete")
+    folders = db.relationship('Folder', backref='users', secondary=users_folder_join)
 
 
-
-#     @hybrid_property
-#     def password(self):
+    @hybrid_property
+    def password(self):
      
-#         pass
+        pass
 
+    @password.setter
+    def password(self, password_plaintext):
+        encoded_pw = bcrypt.generate_password_hash(password_plaintext)
+        self.password_hash = encoded_pw.decode('utf-8')
 
-#     @password.setter
-#     def password(self, password_plaintext):
-#         encoded_pw = bcrypt.generate_password_hash(password_plaintext)
-#         self.password_hash = encoded_pw.decode('utf-8')
+    def validate_password(self, password_plaintext):
+        return bcrypt.check_password_hash(self.password_hash, password_plaintext)
 
-#     def validate_password(self, password_plaintext):
-#         return bcrypt.check_password_hash(self.password_hash, password_plaintext)
+    def generate_token(self):
 
-#     def generate_token(self):
+        payload = {
+            "sub": self.id,
+            "iat": datetime.utcnow(),
+            "exp": datetime.utcnow() + timedelta(days=1)
+        }
 
-#         payload = {
-#             "sub": self.id,
-#             "iat": datetime.utcnow(),
-#             "exp": datetime.utcnow() + timedelta(days=1)
-#         }
+        token = jwt.encode(payload, secret, 'HS256')
 
-#         token = jwt.encode(payload, secret, 'HS256')
-
-#         return token
+        return token
 
 
 
