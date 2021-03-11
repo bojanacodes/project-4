@@ -29,3 +29,5 @@ class Link(db.Model, BaseModel):
     tags = db.relationship('Tag', backref='links', secondary=links_tag_join)
 
 
+    
+

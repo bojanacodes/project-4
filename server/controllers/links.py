@@ -3,12 +3,15 @@ from flask import Blueprint, request
 #import the models
 from models.link import Link
 from models.comment import Comment
+from models.tag import Tag
 
 #importing all the schemas
 from serializers.link import LinkSchema
 from serializers.comment import CommentSchema
+from serializers.tag import TagSchema
 
 link_schema = LinkSchema()
+tag_schema = TagSchema()
 
 
 from marshmallow.exceptions import ValidationError
@@ -145,3 +148,29 @@ def update_comment(link_id, comment_id):
     link = Link.query.get(link_id)
 
     return link_schema.jsonify(link), 201
+
+@router.route("/links/<int:link_id>/tags/<int:tag_id>", methods=["POST"])
+def add_tag_to_link(link_id, tag_id):
+    link = Link.query.get(link_id)
+
+    tag = Tag.query.get(tag_id)
+
+    link.tags.append(tag)
+
+    link.save()
+
+    return link_schema.jsonify(link), 200
+
+
+@router.route("/links/<int:link_id>/tags/<int:tag_id>", methods=["DELETE"])
+def remove_link_tag(link_id, tag_id):
+
+    link = Link.query.get(link_id)
+
+    tag = Tag.query.get(tag_id)
+
+    link.tags.remove(tag)
+
+    link.save()
+
+    return link_schema.jsonify(link), 200

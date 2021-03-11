@@ -14,3 +14,4 @@ class LinkSchema(ma.SQLAlchemyAutoSchema):
 
     # ! This will nest comments inside of link
     comments = fields.Nested("CommentSchema", many=True)
+    tags = fields.Nested("TagSchema", many=True)
