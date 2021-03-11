@@ -1,7 +1,8 @@
 from app import app, db
 
 from models.link import Link
-from data.links_data import list_links
+from data.links_data import list_links, list_tags
+
 
 with app.app_context():
 
@@ -12,6 +13,10 @@ with app.app_context():
         db.create_all()
 
         db.session.add_all(list_links)
+
+        db.session.commit()
+
+        db.session.add_all(list_tags)
 
         db.session.commit()
 

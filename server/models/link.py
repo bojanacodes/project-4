@@ -1,7 +1,8 @@
 
 from app import db
 from models.base import BaseModel
-# ! Import ingredient into my cake so SQLAlchemy knows about it.
+from models.links_tag import links_tag_join
+from models.tag import Tag
 #from models.comment import Comment
 
 
@@ -24,4 +25,7 @@ class Link(db.Model, BaseModel):
     # # * FOR CASCADING DELETION:
         # ! Add the cascade keyword with all and delete.
     #comments = db.relationship('Comment', backref='link', cascade="all, delete")
+
+    tags = db.relationship('Tag', backref='links', secondary=links_tag_join)
+
 

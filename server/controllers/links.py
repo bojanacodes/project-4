@@ -23,7 +23,7 @@ def update_link(link_id):
     return "TODO: Update link", 200
 
 
-@router.route("/links/<int:links_id>", methods=["DELETE"])
+@router.route("/links/<int:link_id>", methods=["DELETE"])
 def remove_link(link_id):
     return "TODO: Remove a link", 200
 
