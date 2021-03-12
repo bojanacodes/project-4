@@ -32,7 +32,7 @@ class User(db.Model, BaseModel):
     # ! create backreffs
 
   
-    links= db.relationship('Link', backref='user')
+    # links= db.relationship('Link', backref='user')
 
 
 
