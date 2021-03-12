@@ -1,19 +1,11 @@
-
-# ! import my database
-# ! Import bcrypt
 from app import db, bcrypt
-# ! extend from base model
 from models.base import BaseModel
-# ! Import hybrid property from sqlalchemy
+from models.folder import Folder
+from models.users_folder import users_folder_join
+# from models.link import Link
 from sqlalchemy.ext.hybrid import hybrid_property
-
-# ! Import the pwjwt library.
 import jwt
-
-# ! Import everything from datetime module
 from datetime import *
-
-# ! import secret
 from config.environment import secret
 
 class User(db.Model, BaseModel):
@@ -22,6 +14,8 @@ class User(db.Model, BaseModel):
 
     username = db.Column(db.String(15), nullable=False, unique=True)
     email = db.Column(db.Text, nullable=False, unique=True)
+    #! check how to add is_admin as db.Boolean
+    # is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
     password_hash = db.Column(db.String(128), nullable=True)
 
@@ -34,6 +28,7 @@ class User(db.Model, BaseModel):
   
     # links= db.relationship('Link', backref='user')
 
+    folders = db.relationship('Folder', backref='users', secondary=users_folder_join)
 
 
     @hybrid_property
@@ -41,12 +36,8 @@ class User(db.Model, BaseModel):
      
         pass
 
-
     @password.setter
-    def password(self, password_plaintext):
-        encoded_pw = bcrypt.generate_password_hash(password_plaintext)
         self.password_hash = encoded_pw.decode('utf-8')
-
     def validate_password(self, password_plaintext):
         return bcrypt.check_password_hash(self.password_hash, password_plaintext)
 

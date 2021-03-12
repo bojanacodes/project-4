@@ -1,11 +1,8 @@
-
 from app import db
 from models.base import BaseModel
 from models.links_tag import links_tag_join
 from models.tag import Tag
-#from models.comment import Comment
-
-
+from models.comment import Comment
 
 
 class Link(db.Model, BaseModel):
@@ -18,8 +15,8 @@ class Link(db.Model, BaseModel):
 
 
     # Foreign keys
-    # folder_id = db.Column(db.Integer, db.ForeignKey('folders.id', ondelete="CASCADE"))
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
+    folder_id = db.Column(db.Integer, db.ForeignKey('folders.id', ondelete="CASCADE"))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
 
 
     # # * FOR CASCADING DELETION:

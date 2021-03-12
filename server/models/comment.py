@@ -1,7 +1,7 @@
 from app import db
 from models.base import BaseModel
-from models.link import Link
-# from models.user import User
+# from models.link import Link
+from models.user import User
 from datetime import datetime
 
 class Comment(db.Model, BaseModel):
@@ -11,6 +11,6 @@ class Comment(db.Model, BaseModel):
     edited_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     link_id = db.Column(db.Integer, db.ForeignKey('links.id', ondelete="CASCADE"))
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
 
     

@@ -20,6 +20,12 @@ def signup():
 
     return user_schema.jsonify(user)
 
+@router.route("/users", methods=["GET"])
+def get_all_the_users():
+
+    users = User.query.all()
+
+    return  user_schema.jsonify(users, many=True), 200
 
 @router.route('/login', methods=['POST'])
 def login():
