@@ -23,8 +23,10 @@ class User(db.Model, BaseModel):
     # ? Create a relationship field to comments
     comments = db.relationship('Comment', backref='user', cascade="all, delete")
 
-    # # ? Create a relationship field to links
-    links = db.relationship('Link', backref='user')
+    # ! create backreffs
+
+  
+    links= db.relationship('Link', backref='user')
 
     folders = db.relationship('Folder', backref='users', secondary=users_folder_join)
 
@@ -35,10 +37,7 @@ class User(db.Model, BaseModel):
         pass
 
     @password.setter
-    def password(self, password_plaintext):
-        encoded_pw = bcrypt.generate_password_hash(password_plaintext)
         self.password_hash = encoded_pw.decode('utf-8')
-
     def validate_password(self, password_plaintext):
         return bcrypt.check_password_hash(self.password_hash, password_plaintext)
 
