@@ -13,6 +13,9 @@ class Folder(db.Model, BaseModel):
 
     links = db.relationship('Link', backref='folder', cascade="all, delete")
 
+    users= db.relationship('User', backref='folders', secondary=users_folder_join)
+
+
     
 
 
