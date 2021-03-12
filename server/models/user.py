@@ -23,12 +23,15 @@ class User(db.Model, BaseModel):
     # ? Create a relationship field to comments
     comments = db.relationship('Comment', backref='user', cascade="all, delete")
 
+#! Delete this - move to folders model?
+    # folders = db.relationship('Folder', backref='user', cascade="all, delete", secondary=users_folder_join)
+
+
+
     # ! create backreffs
 
   
     links= db.relationship('Link', backref='user')
-
-    folders = db.relationship('Folder', backref='users', secondary=users_folder_join)
 
 
     @hybrid_property

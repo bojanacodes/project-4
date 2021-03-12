@@ -4,7 +4,6 @@ from models.links_tag import links_tag_join
 from models.tag import Tag
 from models.comment import Comment
 
-
 class Link(db.Model, BaseModel):
     __tablename__ = "links"
     name = db.Column(db.String(40), nullable=False)
