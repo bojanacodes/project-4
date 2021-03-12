@@ -13,7 +13,8 @@ db = SQLAlchemy(app)
 # ! Instantiate Marshmallow framework.
 ma = Marshmallow(app)
 
-from controllers import links, tags
+from controllers import links, tags, users
 
 app.register_blueprint(links.router, url_prefix="/api")
 app.register_blueprint(tags.router, url_prefix="/api")
+app.register_blueprint(users.router, url_prefix="/api")
