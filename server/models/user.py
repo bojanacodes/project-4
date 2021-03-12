@@ -37,6 +37,8 @@ class User(db.Model, BaseModel):
         pass
 
     @password.setter
+    def password(self, password_plaintext):
+        encoded_pw = bcrypt.generate_password_hash(password_plaintext)
         self.password_hash = encoded_pw.decode('utf-8')
     def validate_password(self, password_plaintext):
         return bcrypt.check_password_hash(self.password_hash, password_plaintext)
