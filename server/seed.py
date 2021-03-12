@@ -3,8 +3,8 @@ from app import app, db
 from models.link import Link
 from data.links_data import list_links, list_tags
 from data.comment_data import list_comments
-from data.user_data import list_users
-from data.folders_data import list_folders
+# from data.user_data import list_users
+from data.folders_data import list_folders, list_users
 
 
 with app.app_context():
