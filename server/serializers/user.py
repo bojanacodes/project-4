@@ -10,7 +10,8 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         # ! Not to be be included in EITHER deserialization or serialization.
         exclude = ('password_hash',) # ? The comma makes it a tuple, which is what it wants.
         # ! Only for deserialization
-        load_only = ('email', 'password')
+        # load_only = ('email', 'password')
+        load_only = ('password',)
 
     # ! Adding this so we can ensure the password is prseent
     password = fields.String(required=True)

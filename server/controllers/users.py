@@ -67,4 +67,6 @@ def login():
 @router.route('/profile', methods=['GET'])
 @secure_route
 def get_user_profile():
-    return user_schema.jsonify(g.current_user)
+    
+    print(g.current_user.email)
+    return user_schema.jsonify(g.current_user), 200
