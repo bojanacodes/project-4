@@ -7,6 +7,8 @@ user_schema = UserSchema()
 
 router = Blueprint(__name__, "users")
 
+# ! To Do: Add PUT and DEL routes, add secure routes
+
 @router.route("/signup", methods=["POST"])
 def signup():
 
@@ -20,6 +22,7 @@ def signup():
 
     return user_schema.jsonify(user)
 
+# ! Remove before deploying
 @router.route("/users", methods=["GET"])
 def get_all_the_users():
 
@@ -46,11 +49,3 @@ def login():
     return { 'token': token, 'message': 'Welcome back!' }
 
 
-
-@router.route("/users", methods=["GET"])
-def get_users():
-
-    users = User.query.all()
-
-
-    return  user_schema.jsonify(users, many=True), 200

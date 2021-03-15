@@ -19,27 +19,24 @@ def secure_route(func):
         token = token_with_bearer.replace('Bearer ', '')
      
         try:
-            # ! Decode the token
+            
             payload = jwt.decode(token, secret, 'HS256')
-            # ! Get the user_id
+            
             user_id = payload['sub']
-        # ! 3) Get the actual user from the user_id, store current_user in g.
+        
             user = User.query.get(user_id)
 
             if not user:
                 return {'Message': 'Unauthorized'}, 401
 
-            # ! Put the user on my global object.
             g.current_user = user
-
-        # ! Common exception with jwt
+        
         except jwt.ExpiredSignatureError:
             return {'Message': 'Token is expired'}, 401
 
         except Exception as e:
             return { 'Message': str(e) }, 401
 
-        # ! Finally) Call my route function
         return func(*args, **kwargs)
 
     return wrapper
