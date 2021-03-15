@@ -9,6 +9,7 @@ import './styles/style.scss'
 
 
 //import all the components here
+import Home from './components/Home'
 import Navbar from './components/Navbar'
 import Register from './components/Register'
 import Login from './components/Login'
@@ -22,7 +23,7 @@ const App = () => (
       <Route exact path="/register" component={Register}/>
       <Route exact path="/workspace" component={Workspace}/>
       <Route exact path="/login" component={Login}/>
-      <Route exact path="/test/backend" component={TestBackend} />
+      {/* <Route exact path="/test/backend" component={TestBackend} /> */}
     </Switch>
   </BrowserRouter>
 )
@@ -38,23 +39,23 @@ const App = () => (
 
 
 
-const Home = () => <Link to={'/test/backend'}>
-  Go to /hello/world page.
-</Link>
+// const Home = () => <Link to={'/test/backend'}>
+//   Go to /hello/world page.
+// </Link>
 
 // ! Just a little component to test that you can talk to your flask server, check if it
 // ! works in network tab.
-const TestBackend = () => {
-  useEffect(() => {
-    // ? This is going to try localhost:5000/api
-    axios.get('/api')
-      .then(({ data }) => console.log(data))
-  }, [])
+// const TestBackend = () => {
+//   useEffect(() => {
+//     // ? This is going to try localhost:5000/api
+//     axios.get('/api')
+//       .then(({ data }) => console.log(data))
+//   }, [])
 
-  return <p>
-    Hello World
-  </p>
-}
+//   return <p>
+//     Hello World
+//   </p>
+// }
 
 export default App
 

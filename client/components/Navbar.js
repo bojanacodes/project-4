@@ -8,15 +8,21 @@ const NavBar = ({ history }) => {
     history.push('/')
   }
   const loggedIn = getLoggedInUserId()
+  console.log('this is it')
+  console.log('here' + loggedIn)
   return <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-menu is-active">
       <div className="navbar-start">
-        <img className="navbar-logo" src="/images/logo.png"/>
+        <img className="navbar-logo" src="/images/logo.png" />
         <div className="navbar-item">
           <div className="buttons">
-            <Link to="/" className="button">
+            {!loggedIn && <Link to="/" className="button" id="reg-log-button">
+              Home
+            </Link>}
+            {loggedIn && <Link to="/Workspace" className="button" id="reg-log-button">
               My workspace
-            </Link>
+            </Link>}
+
           </div>
         </div>
       </div>

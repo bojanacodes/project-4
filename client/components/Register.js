@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 export default function Register({ history }) {
@@ -6,15 +6,15 @@ export default function Register({ history }) {
   const [formData, updateFormData] = useState({
     username: '',
     email: '',
-    password: '',
-    passwordConfirmation: ''
+    password: ''
+    // passwordConfirmation: ''
   })
 
   const [errors, updateErrors] = useState({
     username: '',
     email: '',
-    password: '',
-    passwordConfirmation: ''
+    password: ''
+    // passwordConfirmation: ''
   })
 
   function handleChange(event) {
@@ -22,17 +22,29 @@ export default function Register({ history }) {
     updateFormData({ ...formData, [name]: value })
     updateErrors({ ...errors, [name]: '' })
   }
+  // useEffect(() => {
+  //   axios.get('/api/test')
+  //     .then(resp => {
+  //       console.log(resp.data)
+  //     })
+        
+  // }, [])
+
+
 
   async function handleSubmit(event) {
     event.preventDefault()
     try {
-      const { data } = await axios.post('/api/register', formData)
-      
+      const { data } = await axios.post('/api/signup', formData)
+      console.log(data)
+
       history.push('/login')
     } catch (err) {
       updateErrors(err.response.data.errors)
+      console.log(errors)
     }
   }
+  console.log(formData)
 
   return <div className="section">
     <div className="container">
@@ -47,7 +59,7 @@ export default function Register({ history }) {
               onChange={handleChange}
               name={'username'}
             />
-           
+
             {errors.username && <small className="has-text-danger">
               {errors.username}
             </small>}
@@ -63,7 +75,7 @@ export default function Register({ history }) {
               onChange={handleChange}
               name={'email'}
             />
-           
+
             {errors.email && <small className="has-text-danger">
               {errors.email}
             </small>}
@@ -79,13 +91,13 @@ export default function Register({ history }) {
               onChange={handleChange}
               name={'password'}
             />
-           
+
             {errors.password && <small className="has-text-danger">
               {errors.password}
             </small>}
           </div>
         </div>
-        <div className="field">
+        {/* <div className="field">
           <label className="label">Confirm password</label>
           <div className="control">
             <input
@@ -99,8 +111,8 @@ export default function Register({ history }) {
             {errors.passwordConfirmation && <small className="has-text-danger">
               {errors.passwordConfirmation}
             </small>}
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
         <button className="button">Submit</button>
       </form>
     </div>
