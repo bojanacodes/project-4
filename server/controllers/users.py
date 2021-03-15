@@ -7,6 +7,16 @@ user_schema = UserSchema()
 
 router = Blueprint(__name__, "users")
 
+
+# !this one is a test and needs to be deleted!
+
+@router.route("/users", methods=["GET"])
+def get_all_the_users():
+
+    users = User.query.all()
+
+    return  user_schema.jsonify(users, many=True), 200
+
 @router.route("/signup", methods=["POST"])
 def signup():
 
@@ -20,12 +30,7 @@ def signup():
 
     return user_schema.jsonify(user)
 
-@router.route("/users", methods=["GET"])
-def get_all_the_users():
 
-    users = User.query.all()
-
-    return  user_schema.jsonify(users, many=True), 200
 
 @router.route('/login', methods=['POST'])
 def login():
@@ -47,3 +52,13 @@ def login():
 
 
 
+#! get single user infor 
+
+@router.route("/<int:user_id>", methods=["GET"])
+def get_single_user(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        return { 'message': 'Link not found' }, 404
+    
+    return user_schema.jsonify(user), 200
