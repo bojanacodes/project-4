@@ -8,8 +8,6 @@ user_schema = UserSchema()
 
 router = Blueprint(__name__, "users")
 
-# ! To Do: Add PUT and DEL routes, add secure routes
-
 @router.route("/signup", methods=["POST"])
 def signup():
 
@@ -33,18 +31,15 @@ def get_all_the_users():
 
 @router.route('/login', methods=['POST'])
 def login():
-    # ! 1) Get that user by their email/username, check if they exist.
+  
     user = User.query.filter_by(email=request.json['email']).first()
 
     if not user:
         return { 'message': 'No user found for this email' }
-    # ! 2) Check the password by hashing it, then using bcrypt to compare it to the one in the db.
-    # ? To do this, let's create a method validate_password on the user model.
+   
     if not user.validate_password(request.json['password']):
         return { 'message' : 'You are not authorized' }, 402
 
-    # ! 3) Generate a token to send back (for them to attach to POST's, PUT's, DELETE's etc.)
-    # ? Another method on user model generate_token (JWT)
     token = user.generate_token()
 
     return { 'token': token, 'message': 'Welcome back!' }
@@ -70,3 +65,21 @@ def get_user_profile():
     
     print(g.current_user.email)
     return user_schema.jsonify(g.current_user), 200
+
+@router.route('/profile', methods=['PUT'])
+@secure_route
+def update_profile():
+
+    existing_user = User.query.get(g.current_user.id)
+    user_dictionary = request.json
+
+    user = user_schema.load(
+
+                user_dictionary,
+                instance=existing_user,
+                partial=True)
+
+    user.save()
+
+    return user_schema.jsonify(user), 201
+

@@ -1,18 +1,46 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Switch, Link, Route } from 'react-router-dom'
-import './styles/style.scss'
 import axios from 'axios'
 
-// ! Some starter code for your frontend, change this
-// ! however you like.
+
+//import stylesheets
+import 'bulma'
+import './styles/style.scss'
+
+
+//import all the components here
+import Navbar from './components/Navbar'
+import Register from './components/Register'
+import Login from './components/Login'
+import Workspace from './components/Workspace'
+import UserProfile from './components/UserProfile'
+
 const App = () => (
   <BrowserRouter>
+    <Navbar />
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route exact path="/register" component={Register}/>
+      <Route exact path="/workspace" component={Workspace}/>
+      <Route exact path="/login" component={Login}/>
       <Route exact path="/test/backend" component={TestBackend} />
+      <Route exact path="/profile/:userId" component={UserProfile} />
+     
+
     </Switch>
   </BrowserRouter>
 )
+
+
+
+
+
+
+
+
+
+
+
 
 const Home = () => <Link to={'/test/backend'}>
   Go to /hello/world page.
@@ -33,3 +61,6 @@ const TestBackend = () => {
 }
 
 export default App
+
+
+
