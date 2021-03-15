@@ -108,7 +108,6 @@ def update_link(folder_id, link_id):
                 instance=existing_link,
                 partial=True
             )
-
                 link.save()
 
     except ValidationError as e:
@@ -135,11 +134,6 @@ def remove_link(folder_id, link_id):
         return { 'errors': e.messages, 'messages': 'Something went wrong' }
 
 
-   
-
-   
-
-
 # ? Comments
 @router.route('/folders/<int:folder_id>/links/<int:link_id>/comments', methods=['POST'])
 @secure_route
@@ -156,9 +150,10 @@ def create_comment(folder_id, link_id):
                 comment = comment_schema.load(comment_dictionary)
     
                 comment.link = link
+                comment.user = g.current_user
 
                 comment.save()
-
+                
                 return comment_schema.jsonify(comment)
 
     except ValidationError as e:
@@ -169,38 +164,53 @@ def create_comment(folder_id, link_id):
 
 
 @router.route('/folders/<int:folder_id>/links/<int:link_id>/comments/<int:comment_id>', methods=['DELETE'])
+@secure_route
 def remove_comment(folder_id, link_id, comment_id):
 
     comment = Comment.query.get(comment_id)
-
-    comment.remove()
-
     link = Link.query.get(link_id)
 
-    return link_schema.jsonify(link), 202
+    try:
 
+        for item in g.current_user.folders:
 
-@router.route('/links/<int:link_id>/comments/<int:comment_id>', methods=['PUT'])
-def update_comment(link_id, comment_id):
+            if item.id == folder_id and comment.user_id == g.current_user.id:
+                comment.remove()
+                return link_schema.jsonify(link), 202
+    
+    except ValidationError as e:
+        return { 'errors': e.messages, 'messages': 'Something went wrong' }
+
+    return {'errors': 'This is not your comment!'}, 401
+
+   
+@router.route('folders/<int:folder_id>/links/<int:link_id>/comments/<int:comment_id>', methods=['PUT'])
+@secure_route
+def update_comment(folder_id, link_id, comment_id):
 
     comment_dictionary = request.json
     existing_comment = Comment.query.get(comment_id)
 
     try:
-        comment = comment_schema.load(
-            comment_dictionary,
-            instance=existing_comment,
-            partial=True
-        )
+        for item in g.current_user.folders:
+            if item.id == folder_id and existing_comment.user_id == g.current_user.id:
 
+                comment = comment_schema.load(
+                    comment_dictionary,
+                    instance=existing_comment,
+                    partial=True
+                    )
+
+                comment.save()
+                link = Link.query.get(link_id)
+
+                return link_schema.jsonify(link), 201
+                
     except ValidationError as e:
         return { 'errors': e.messages, 'messages': 'Something went wrong' }
 
-    comment.save()
+    return {'errors': 'This is not your comment!'}, 401
 
-    link = Link.query.get(link_id)
-
-    return link_schema.jsonify(link), 201
 
 # ? Tags 
 
