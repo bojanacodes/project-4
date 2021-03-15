@@ -4,6 +4,8 @@ from serializers.tag import TagSchema
 
 from marshmallow.exceptions import ValidationError
 
+# ! To Do: Add /folders to URL path and add secure route
+
 tag_schema = TagSchema()
 
 router = Blueprint(__name__, "tags")
