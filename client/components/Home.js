@@ -12,24 +12,18 @@ export default function Home() {
   // }
 
   return <section className="heropage">
-    <div className="homepage-text">
-      <h1 className="homepage-title">URealM</h1>
-      <h3 className="homepage-subtitle">Get all of your links together</h3>
-    </div>
-    {/* <Slider {...settings}>
-      <div>
-        <img src="https://res.cloudinary.com/dznpk39i0/image/upload/v1614164524/ycbvvupx1wywxptztwot.jpg" />
+    <section className="hero is-fullheight">
+      <div className="hero-body">
+        <div className="">
+          <p className="title">
+            UReaLm
+          </p>
+          <p className="subtitle">
+            Place to store your links
+          </p>
+        </div>
       </div>
-      <div>
-        <img src="https://res.cloudinary.com/dznpk39i0/image/upload/v1614164540/k3bytggi8u4yelvppsml.jpg" />
-      </div>
-      <div>
-        <img src="https://res.cloudinary.com/dznpk39i0/image/upload/v1614164540/k3bytggi8u4yelvppsml.jpg" />
-      </div>
-      <div>
-        <img src="https://res.cloudinary.com/dznpk39i0/image/upload/v1614164540/k3bytggi8u4yelvppsml.jpg" />
-      </div>
-    </Slider> */}
+    </section>
   </section>
 
 }

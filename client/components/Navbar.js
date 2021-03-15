@@ -3,10 +3,35 @@ import React from 'react'
 import { getLoggedInUserId } from '../lib/auth'
 import axios from 'axios'
 const NavBar = ({ history }) => {
-  function handleLogout() {
-    localStorage.removeItem('token')
-    history.push('/')
+
+  
+  // function handleLogout() {
+  //   const token = localStorage.getItem('token')
+  //   console.log('jednorozec')
+  //   console.log(token)
+  //   localStorage.removeItem(token)
+  //   history.push('/login')
+  // }
+
+  // ! handle logout does not work
+  async function handleLogout() {
+   
+   
+    try {
+      console.log(localStorage)
+      const token = localStorage.getItem('token')
+      console.log('unicorn')
+      console.log(token)
+      localStorage.removeItem(token)
+      console.log(localStorage)
+     
+      history.push('/login')
+    } catch (err) {
+      // ? Handle any error in here.
+      console.log(err)
+    }
   }
+
   const loggedIn = getLoggedInUserId()
   console.log('this is it')
   console.log('here' + loggedIn)
