@@ -9,9 +9,6 @@ class BaseModel:
     # updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
-    created_on = db.Column(db.DateTime, server_default=db.func.now())
-    updated_on = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
-
     # ! Adding a method in here to save a line of code in saving.
     def save(self):
         db.session.add(self)
