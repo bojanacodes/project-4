@@ -38,6 +38,7 @@ class User(db.Model, BaseModel):
             "sub": self.id,
             "iat": datetime.utcnow(),
             "exp": datetime.utcnow() + timedelta(days=1)
+            
         }
 
         token = jwt.encode(payload, secret, 'HS256')

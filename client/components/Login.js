@@ -5,8 +5,8 @@ export default function Login({ history }) {
 
   const [formData, updateFormData] = useState({
     email: '',
-    password: '',
-    passwordConfirmation: ''
+    password: ''
+    // passwordConfirmation: ''
   })
 
   function handleChange(event) {
@@ -22,7 +22,7 @@ export default function Login({ history }) {
       if (localStorage) {
         localStorage.setItem('token', data.token)
       }
-      history.push('/')
+      history.push('/Workspace')
     } catch (err) {
       console.log(err.response.data)
       
@@ -56,7 +56,7 @@ export default function Login({ history }) {
             />
           </div>
         </div>
-        <div className="field">
+        {/* <div className="field">
           <label className="label">Password confirmation</label>
           <div className="control">
             <input
@@ -67,7 +67,7 @@ export default function Login({ history }) {
               name={'passwordConfirmation'}
             />
           </div>
-        </div>
+        </div> */}
         <button className="button">Submit</button>
       </form>
     </div>
