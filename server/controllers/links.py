@@ -214,28 +214,28 @@ def update_comment(folder_id, link_id, comment_id):
 
 # ? Tags 
 
-@router.route("/links/<int:link_id>/tags/<int:tag_id>", methods=["POST"])
-def add_tag_to_link(link_id, tag_id):
-    link = Link.query.get(link_id)
+# @router.route("/links/<int:link_id>/tags/<int:tag_id>", methods=["POST"])
+# def add_tag_to_link(link_id, tag_id):
+#     link = Link.query.get(link_id)
 
-    tag = Tag.query.get(tag_id)
+#     tag = Tag.query.get(tag_id)
 
-    link.tags.append(tag)
+#     link.tags.append(tag)
 
-    link.save()
+#     link.save()
 
-    return link_schema.jsonify(link), 200
+#     return link_schema.jsonify(link), 200
 
 
-@router.route("/links/<int:link_id>/tags/<int:tag_id>", methods=["DELETE"])
-def remove_link_tag(link_id, tag_id):
+# @router.route("/links/<int:link_id>/tags/<int:tag_id>", methods=["DELETE"])
+# def remove_link_tag(link_id, tag_id):
 
-    link = Link.query.get(link_id)
+#     link = Link.query.get(link_id)
 
-    tag = Tag.query.get(tag_id)
+#     tag = Tag.query.get(tag_id)
 
-    link.tags.remove(tag)
+#     link.tags.remove(tag)
 
-    link.save()
+#     link.save()
 
-    return link_schema.jsonify(link), 200
+#     return link_schema.jsonify(link), 200

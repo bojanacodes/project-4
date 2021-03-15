@@ -1,7 +1,8 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, g
 from models.user import User
 from serializers.user import UserSchema
 from marshmallow.exceptions import ValidationError
+from decorators.secure_route import secure_route
 
 user_schema = UserSchema()
 
@@ -27,6 +28,7 @@ def signup():
 def get_all_the_users():
 
     users = User.query.all()
+    return user_schema.jsonify(users, many=True), 200
 
 
 @router.route('/login', methods=['POST'])
@@ -49,13 +51,20 @@ def login():
 
 
 
-#! get single user infor 
+#! get single user information for the owner
 
-@router.route("/<int:user_id>", methods=["GET"])
-def get_single_user(user_id):
-    user = User.query.get(user_id)
+# @router.route("/users/<int:user_id>", methods=["GET"])
+# @secure_route
+# def get_single_user(user_id):
+#     user = User.query.get(user_id)
 
-    if not user:
-        return { 'message': 'Link not found' }, 404
+#     if not user:
+#         return { 'message': 'Link not found' }, 404
     
-    return user_schema.jsonify(user), 200
+#     return user_schema.jsonify(user), 200
+
+
+@router.route('/profile', methods=['GET'])
+@secure_route
+def get_user_profile():
+    return user_schema.jsonify(g.current_user)
