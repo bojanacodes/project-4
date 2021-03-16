@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getLoggedInUserId } from '../lib/auth'
 import axios from 'axios'
 const NavBar = ({ history }) => {
-  const [username, updateUsername] = useState('')
+  const [email, updateEmail] = useState('')
   const token = localStorage.getItem('token') 
   
   // function handleLogout() {
@@ -26,7 +26,7 @@ const NavBar = ({ history }) => {
       localStorage.clear()
       // localStorage.removeItem(token)
       console.log(localStorage)
-      updateUsername('')
+      updateEmail('')
       history.push('/login')
     } catch (err) {
       // ? Handle any error in here.
@@ -46,8 +46,11 @@ const NavBar = ({ history }) => {
             headers: { Authorization: `Bearer ${token}` }
           })
           if (data) {
-            updateUsername(data.username)
-            console.log(username)
+            console.log('this is data.email ' + data)
+            console.log(data)
+            updateEmail(data.email)
+            console.log('email')
+            console.log(email)
           }
         } catch (err) {
           console.log(err)
@@ -88,6 +91,10 @@ const NavBar = ({ history }) => {
             {loggedIn && <button onClick={handleLogout} className="button" id="reg-log-button">
               Logout
             </button>}
+            {loggedIn && <Link to={`/profile/${loggedIn}`} className="button" id="reg-log-button">
+              {email}
+            </Link>}
+
           </div>
         </div>
       </div>
