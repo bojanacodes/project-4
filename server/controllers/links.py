@@ -212,7 +212,7 @@ def update_comment(folder_id, link_id, comment_id):
     return {'errors': 'This is not your comment!'}, 401
 
 
-# ? Tags 
+# # ? Tags 
 
 # @router.route("/links/<int:link_id>/tags/<int:tag_id>", methods=["POST"])
 # def add_tag_to_link(link_id, tag_id):

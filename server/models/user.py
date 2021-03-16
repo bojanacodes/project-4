@@ -14,25 +14,10 @@ class User(db.Model, BaseModel):
 
     username = db.Column(db.String(15), nullable=False, unique=True)
     email = db.Column(db.Text, nullable=False, unique=True)
-    #! check how to add is_admin as db.Boolean
-    # is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
     password_hash = db.Column(db.String(128), nullable=True)
 
-    
-    # ? Create a relationship field to comments
     comments = db.relationship('Comment', backref='user', cascade="all, delete")
-
-#! Delete this - move to folders model?
-    # folders = db.relationship('Folder', backref='user', cascade="all, delete", secondary=users_folder_join)
-
-
-
-    # ! create backreffs
-
-  
-    # links= db.relationship('Link', backref='user')
-
 
     @hybrid_property
     def password(self):

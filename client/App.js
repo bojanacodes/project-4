@@ -14,6 +14,8 @@ import Navbar from './components/Navbar'
 import Register from './components/Register'
 import Login from './components/Login'
 import Workspace from './components/Workspace'
+import UserProfile from './components/UserProfile'
+import CreateLink from './components/CreateLink'
 
 
 // import UpdateFolder from './components/UpdateFolder'
@@ -27,6 +29,10 @@ const App = () => (
       <Route exact path="/register" component={Register}/>
       <Route exact path="/workspace" component={Workspace}/>
       <Route exact path="/login" component={Login}/>
+      <Route exact path="/profile/:userId" component={UserProfile} />
+      <Route exact path="/folders/:folderId/links" component={CreateLink} />
+     
+
       <Route exact path="/newfolder" component={CreateFolder}/>
       {/* <Route exact path="/test/backend" component={TestBackend} /> */}
     </Switch>
