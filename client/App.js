@@ -16,7 +16,7 @@ import Login from './components/Login'
 import Workspace from './components/Workspace'
 import UserProfile from './components/UserProfile'
 import CreateLink from './components/CreateLink'
-
+import FolderOverview from './components/FolderOverview'
 
 import UpdateFolder from './components/UpdateFolder'
 import CreateFolder from './components/CreateFolder'
@@ -30,17 +30,12 @@ const App = () => (
       <Route exact path="/login" component={Login}/>
       <Route exact path="/workspace" component={Workspace}/>
       <Route exact path="/profile/:userId" component={UserProfile} />
-<<<<<<< HEAD
-      <Route exact path="/folders/:folderId/links" component={CreateLink} />
       <Route exact path="/folders/new-folder" component={CreateFolder}/>
       <Route exact path="/folders/edit-folder/:folderId" component={UpdateFolder}/>
-=======
 
       <Route exact path="/test/make-link" component={CreateLink} />
-      <Route exact path="/folders/:folderId/links" component={CreateLink} />
-      <Route exact path="/newfolder" component={CreateFolder}/>
-      {/* <Route exact path="/test/backend" component={TestBackend} /> */}
->>>>>>> 94271a349a25ceb9c5ebcb7d2d5dc1eddd742cb8
+      <Route exact path="/folders/:folderId/links/new-link" component={CreateLink} />
+      <Route exact path="/folders/:folderId" component={FolderOverview} />
     </Switch>
   </BrowserRouter>
 )

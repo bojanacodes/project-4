@@ -6,16 +6,10 @@ const NavBar = ({ history }) => {
   const [email, updateEmail] = useState('')
   const token = localStorage.getItem('token') 
   
-  // function handleLogout() {
-  //   const token = localStorage.getItem('token')
-  //   console.log('jednorozec')
-  //   console.log(token)
-  //   localStorage.removeItem(token)
-  //   history.push('/login')
-  // }
+
 
   // ! handle logout does not work
-  async function handleLogout() {
+  function handleLogout() {
    
    
     try {
@@ -58,7 +52,7 @@ const NavBar = ({ history }) => {
       }
     }
     fetchData()
-  }, [])
+  }, [loggedIn])
 
 
   // console.log('this is it')
@@ -102,4 +96,4 @@ const NavBar = ({ history }) => {
   </nav>
 }
 
-export default NavBar
+export default withRouter(NavBar)
