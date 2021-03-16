@@ -4,7 +4,7 @@ import axios from 'axios'
 import CreatableSelect from 'react-select/creatable';
 
 
-const inputFields = ['name', 'description', 'URL', 'image', 'tags', 'importance']
+const inputFields = ['name', 'description', 'URL', 'image']
 
 // ! Add comments as separate component
 

@@ -30,9 +30,17 @@ const App = () => (
       <Route exact path="/login" component={Login}/>
       <Route exact path="/workspace" component={Workspace}/>
       <Route exact path="/profile/:userId" component={UserProfile} />
+<<<<<<< HEAD
       <Route exact path="/folders/:folderId/links" component={CreateLink} />
       <Route exact path="/folders/new-folder" component={CreateFolder}/>
       <Route exact path="/folders/edit-folder/:folderId" component={UpdateFolder}/>
+=======
+
+      <Route exact path="/test/make-link" component={CreateLink} />
+      <Route exact path="/folders/:folderId/links" component={CreateLink} />
+      <Route exact path="/newfolder" component={CreateFolder}/>
+      {/* <Route exact path="/test/backend" component={TestBackend} /> */}
+>>>>>>> 94271a349a25ceb9c5ebcb7d2d5dc1eddd742cb8
     </Switch>
   </BrowserRouter>
 )
