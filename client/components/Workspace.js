@@ -8,7 +8,7 @@ export default function Workspace() {
 
   const loggedIn = getLoggedInUserId()
   const token = localStorage.getItem('token')
-
+  const [loading, updateLoading] = useState(true)
   useEffect(() => {
     async function getFolderData() {
       if (loggedIn) {
@@ -18,6 +18,7 @@ export default function Workspace() {
           })
           if (data) {
             updateFolders(data)
+            updateLoading(false)
           }
 
         } catch (err) {
@@ -29,7 +30,11 @@ export default function Workspace() {
     getFolderData()
   }, [])
 
-
+  if (loading) {
+    return <div className='loading'>
+      <img src='https://i.ibb.co/xDS2vQc/loading.gif' />
+    </div>
+  }
 
   return <div>
 
