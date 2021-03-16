@@ -35,7 +35,7 @@ export default function Workspace() {
 
     <h1>This is workspace</h1>
 
-    {/* <Link to={`/properties/${item._id}`} className="button is-primary is-light mb-2">Test create a link</Link> */}
+   
 
 
     <div className="container">
@@ -56,6 +56,8 @@ export default function Workspace() {
           </div>
         })}
       </div>
+
+      <Link to={'/test/make-link'} className="button is-primary is-light mb-2">Test create a link</Link>
     </div>
   </div>
 

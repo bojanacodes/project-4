@@ -1,5 +1,6 @@
 from flask import Blueprint, request, g
 from models.folder import Folder
+from models.user import User
 from serializers.folder import FolderSchema
 from marshmallow.exceptions import ValidationError
 from decorators.secure_route import secure_route
@@ -78,6 +79,44 @@ def update_folder(folder_id):
                 folder.save()
 
                 return folder_schema.jsonify(folder), 201
+                
+
+    except ValidationError as e:
+        return { 'errors': e.messages, 'messages': 'Something went wrong' }
+
+    return {'errors': 'This is not your folder!'}, 401
+
+@router.route("/folders/<int:folder_id>/users", methods=["POST"])
+@secure_route
+def add_user_to_folder(folder_id):
+
+    existing_folder = Folder.query.get(folder_id)
+    print('existing folder', existing_folder)
+
+    new_user_email = request.json.get('email')
+
+
+    new_user = User.query.filter_by(email=new_user_email).first()
+
+    print('new user', new_user)
+    
+
+    if not new_user:
+        return {'errors': 'This user is not registered!'}, 404
+
+    try:
+        for item in g.current_user.folders:
+            if item.id == existing_folder.id:
+                print('folder users 1', existing_folder.users)
+                
+                print('new user', new_user)
+               
+                existing_folder.users.append(new_user)
+                print('folder usrs 2', existing_folder.users)
+
+                existing_folder.save()
+
+                return folder_schema.jsonify(existing_folder), 201
                 
 
     except ValidationError as e:
