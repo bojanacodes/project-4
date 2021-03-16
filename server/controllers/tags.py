@@ -12,7 +12,7 @@ tag_schema = TagSchema()
 
 router = Blueprint(__name__, "tags")
 
-#test to get all the tags
+#!test to get all the tags
 @router.route("/tags", methods=["GET"])
 def get_test_tags():
     tags = Tag.query.all()

@@ -7,6 +7,8 @@ export default function Workspace() {
   return <div>
 
     <h1>This is workspace</h1>
+
+    <Link to={`/properties/${item._id}`} className="button is-primary is-light mb-2">Test create a link</Link>
   </div>
   
 }

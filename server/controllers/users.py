@@ -93,3 +93,14 @@ def update_profile():
 
     return user_schema.jsonify(user), 201
 
+@router.route('/profile', methods=['DELETE'])
+@secure_route
+def delete_profile():
+    user = User.query.get(g.current_user.id)
+
+    user.remove()
+
+    return { 'message': 'User deleted successfully' }, 200
+
+
+
