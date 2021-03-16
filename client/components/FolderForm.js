@@ -4,10 +4,10 @@ import React from 'react'
 
 // import Select from 'react-select'
 
-const inputFields = ['name', 'tag', 'colaborator']
+const inputFields = ['name', 'tag', 'collaborator']
 
 
-export default function CityForm({ formData, handleSubmit, handleChange }) {
+export default function FolderForm({ formData, handleSubmit, handleChange }) {
   
   return <div className="section">
     <div className="container">

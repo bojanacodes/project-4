@@ -1,21 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import CityForm from './CityForm'
+
+import FolderForm from './FolderForm'
 
 
-export default function PostFolder({ history }) {
+export default function CreateFolder({ history }) {
   
 
   const [formData, updateFormData] = useState({
-    city: '',
-    about: '',
-    country: '',
-    currency: '',
-    continent: '',
-    language: '',
-    image: '',
-    long: '',
-    lat: ''
+    name: '',
+    tag: '',
+    collaborators: ''
   })
 
   function handleChange(event) {
@@ -27,7 +22,7 @@ export default function PostFolder({ history }) {
     event.preventDefault()
     const token = localStorage.getItem('token')
     try {
-      const { data } = await axios.post('/api/cityscapes', formData, {
+      const { data } = await axios.post('/api/folders', formData, {
         headers: { Authorization: `Bearer ${token}` }
         
       })
@@ -35,7 +30,7 @@ export default function PostFolder({ history }) {
       
       
       
-      history.push(`/cityscapes/discover/${data._id}`)
+      history.push('/workspace')
     } catch (err) {
       
       
@@ -44,7 +39,7 @@ export default function PostFolder({ history }) {
   }
 
   
-  return <CityForm
+  return <FolderForm
     handleChange={handleChange}
     handleSubmit={handleSubmit}
     formData={formData}

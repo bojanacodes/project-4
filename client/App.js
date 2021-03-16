@@ -15,6 +15,10 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Workspace from './components/Workspace'
 
+
+// import UpdateFolder from './components/UpdateFolder'
+import CreateFolder from './components/CreateFolder'
+
 const App = () => (
   <BrowserRouter>
     <Navbar />
@@ -23,6 +27,7 @@ const App = () => (
       <Route exact path="/register" component={Register}/>
       <Route exact path="/workspace" component={Workspace}/>
       <Route exact path="/login" component={Login}/>
+      <Route exact path="/newfolder" component={CreateFolder}/>
       {/* <Route exact path="/test/backend" component={TestBackend} /> */}
     </Switch>
   </BrowserRouter>

@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { getLoggedInUserId } from '../lib/auth'
 export default function Workspace() {
   const [folders, updateFolders] = useState([])
 
 
+  const loggedIn = getLoggedInUserId()
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
     async function getFolderData() {
-      try {
-        const { data } = await axios.get('/api/folders')
-        updateFolders(data)
-      } catch (err) {
-        console.log(err)
+      if (loggedIn) {
+        try {
+          const { data } = await axios.get('/api/folders', {
+            headers: { Authorization: `Bearer ${token}` }
+          })
+          if (data) {
+            updateFolders(data)
+          }
+
+        } catch (err) {
+          console.log(err)
+        }
+
       }
     }
     getFolderData()
   }, [])
+
+
 
   return <div>
 
