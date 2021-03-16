@@ -4,11 +4,148 @@
   width: 100px;
 }
 .navbar {
-  // background-color: #7AA5D2;
+  background-color: #7AA5D2;
 }
 
 // home component
 
 .hero  {
   background-color: #8A7AD1;
+}
+
+//Workspace
+#tille-workspace {
+  color: #36699F;
+  margin: 20px 10px 30px 40px;
+}
+#loader-workspace {
+  width: 50px;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cards-workspace:hover{
+  background-color: #7AD1C4;
+}
+#cards-new-folder {
+  background-color: #8A7AD1;
+}
+
+// #cards-workspace:hover{
+//   background-color: #7AD1C4;
+// }
+
+//Folderoverview
+#folder-overview-flexbox {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+
+}
+
+
+#left-side-folder-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px 0px 0px 10px;
+  width: 20%;
+}
+
+#right-side-folder-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 10px 0px 0px 10px;
+  width: 80%;
+}
+.text-background-folder-name {
+  background-color: #7AD1C4;
+}
+.is-active {
+  color: #7AD1C4;
+
+}
+
+#loader-folder-overview{
+  width: 50px;
+  // position: relative;
+  // align-self: center;
+}
+
+
+//!general styling rules
+.card:hover {
+  color:#03d6d2;
+}
+
+.card-content {
+  color:#03d6d2 !important;
+}
+
+//! Update folder styles
+#panel-update-folder {
+  margin: 20px 0px 0px 0px;
+}
+
+#h3-update-folder {
+  background-color: #7AD1C4;
+}
+
+//! home page
+
+#hero-image {
+  background-image: url("https://images.unsplash.com/photo-1457694587812-e8bf29a43845?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1651&q=80");
+  background-size: cover;
+}
+
+#home-title {
+  font-size: 70px;
+  color: #ECF2F8;
+  font-family: 'Raleway', sans-serif;
+}
+#home-subtitle {
+  color: #ECF2F8;
+  font-size: 30px;
+  background: rgb(122, 165, 210);
+  font-family: 'Raleway', sans-serif;
+}
+
+//! navbar
+
+#nav-right-buttons {
+  background-color: #2A527B;
+  color: #ECF2F8;
+  border: #24466A;
+}
+#nav-right-buttons:hover {
+  background-color: #24466A;
+  color: #ECF2F8;
+  border: #24466A;
+}
+
+#nav-left-buttons{
+background-color: #D9E5F2;
+}
+
+#nav-left-buttons:hover{
+  background-color: #ECF2F8;
+  
+}
+
+//login
+#login-form {
+  width: 40%;
+}
+
+#container-form{
+display: flex;
+justify-content: center;
+}
+//registration
+#registration-form {
+  width: 40%;
 }

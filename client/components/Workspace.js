@@ -32,13 +32,13 @@ export default function Workspace() {
 
   if (loading) {
     return <div className='loading'>
-      <img src='https://i.ibb.co/xDS2vQc/loading.gif' />
+      <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-workspace"/>
     </div>
   }
 
   return <div>
 
-    <h1>This is workspace</h1>
+    <h1 className="title is=one" id="tille-workspace">Welcome to your workspace</h1>
 
    
 
@@ -48,7 +48,7 @@ export default function Workspace() {
         {folders.map((folder, index) => {
           return <div key={index} className="column is-one-third-desktop is-half-tablet is-half-mobile">
             <Link to={`/folders/${folder.id}`}>
-              <div className="card">
+              <div className="card" id="cards-workspace">
                 <div className="card-content">
                   <div className="media">
                     <div className="media-content">
@@ -65,7 +65,7 @@ export default function Workspace() {
         })}
         <div className="column is-one-third-desktop is-half-tablet is-half-mobile">
           <Link to={'/folders/new-folder'}>
-            <div className="card">
+            <div className="card" id="cards-new-folder">
               <div className="card-content">
                 <div className="media">
                   <div className="media-content">

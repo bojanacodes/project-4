@@ -2,14 +2,14 @@ from models.link import Link
 from models.tag import Tag
 
 list_tags = [
-    Tag(name="JavaScript"),
-    Tag(name="React"),
-    Tag(name="SQL"),
-    Tag(name="Front end"),
-    Tag(name="Back end"),
-    Tag(name="Python"),
-    Tag(name="Design"),
-    Tag(name="Testing")
+    Tag(name="JavaScript", folder_id=1),
+    Tag(name="React", folder_id=1),
+    Tag(name="SQL", folder_id=1),
+    Tag(name="Front end", folder_id=1),
+    Tag(name="Back end", folder_id=1),
+    Tag(name="Python", folder_id=1),
+    Tag(name="Design", folder_id=1),
+    Tag(name="Testing", folder_id=1)
 
 ]
 #! Need to add tags for links in folders 2 and 3

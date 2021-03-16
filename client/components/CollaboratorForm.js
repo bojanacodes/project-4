@@ -26,7 +26,7 @@ export default function CollaboratorForm({ formEmailData, handleSubmitCollaborat
             </div>
           </div>
         })}
-        <button className="button mt-5 is-success">Add the collaborator</button>
+        <button className="button mt-5">Add the collaborator</button>
       </form>
     </div>
   </div>

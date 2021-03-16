@@ -1,7 +1,9 @@
 from flask import Blueprint, request, g
 from models.tag import Tag
 from models.folder import Folder
+from models.link import Link
 from serializers.tag import TagSchema
+from serializers.link import LinkSchema
 from decorators.secure_route import secure_route
 
 from marshmallow.exceptions import ValidationError
@@ -9,6 +11,7 @@ from marshmallow.exceptions import ValidationError
 # ! To Do: Add /folders to URL path and add secure route
 
 tag_schema = TagSchema()
+link_schema = LinkSchema()
 
 router = Blueprint(__name__, "tags")
 
@@ -48,25 +51,48 @@ def get_tags(folder_id):
 
 
 
-#! get particular tag
+#! get particular tag and links associated with it
+
+# @router.route("/folders/<int:folder_id>/tags/<int:tag_id>", methods=["GET"])
+# @secure_route
+# def get_tag(tag_id, folder_id):
+   
+
+#     for item in g.current_user.folders:
+
+#         if item.id == folder_id:
+#             tag = Tag.query.get(tag_id)
+#             return tag_schema.jsonify(tag), 200
+
+#         if not tag:
+#             return {"message": "Tag not found"}, 404
+
+#     return {'errors': 'This is not your folder!'}, 401
 
 @router.route("/folders/<int:folder_id>/tags/<int:tag_id>", methods=["GET"])
 @secure_route
 def get_tag(tag_id, folder_id):
-   
+    # print('existing tag', existing_tag)
+    tag = Tag.query.get(tag_id)
+    # tags = Tag.query.all()
+
+    links = Link.query.all()
 
     for item in g.current_user.folders:
 
         if item.id == folder_id:
-            tag = Tag.query.get(tag_id)
-            return tag_schema.jsonify(tag), 200
+            # existing_tag.links.filter_by(new_user)
+            # links = Link.tags.query.filter_by(tag_id = tag_id).all()
+            links.tags.query.filter_by(tag)
+
+            return link_schema.jsonify(links, many=True), 200
+
+            
 
         if not tag:
             return {"message": "Tag not found"}, 404
 
-    return {'errors': 'This is not your folder!'}, 401
-
-    
+    return {'errors': 'This is not your folder!'}, 401    
 
 
 @router.route("/folders/<int:folder_id>/tags", methods=["POST"])
