@@ -12,21 +12,9 @@ const inputFields = ['name', 'description', 'URL', 'image']
 
 
 
-export default function LinkForm({ formData, handleSubmit, handleChange, handleTagChange, folderId }) {
+export default function LinkForm({ formData, handleSubmit, handleChange, handleTagChange, folderId, tagsData }) {
 
-  const [tagsData, updateTagsData] = useState()
 
-  useEffect(() => {
-    async function fetchTags() {
-      try {
-        const { data } = await axios.get(`/api/folders/${folderId}/tags`)
-        updateTagsData(data)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    fetchTags()
-  }, [])
 
   return <div className="section">
 

@@ -25,7 +25,7 @@ const NavBar = ({ history }) => {
       // console.log(token)
       localStorage.clear()
       // localStorage.removeItem(token)
-      console.log(localStorage)
+      // console.log(localStorage)
       updateUsername('')
       history.push('/login')
     } catch (err) {
@@ -47,7 +47,7 @@ const NavBar = ({ history }) => {
           })
           if (data) {
             updateUsername(data.username)
-            console.log(username)
+            // console.log(username)
           }
         } catch (err) {
           console.log(err)
@@ -59,7 +59,7 @@ const NavBar = ({ history }) => {
 
 
   // console.log('this is it')
-  console.log('here' + loggedIn)
+  // console.log('here' + loggedIn)
   return <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-menu is-active">
       <div className="navbar-start">

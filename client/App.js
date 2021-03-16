@@ -32,7 +32,7 @@ const App = () => (
       <Route exact path="/profile/:userId" component={UserProfile} />
 
       <Route exact path="/test/make-link" component={CreateLink} />
-      <Route exact path="/folders/:folderId/links" component={CreateLink} />
+      {/* <Route exact path="/folders/:folderId/links" component={CreateLink} /> */}
       <Route exact path="/newfolder" component={CreateFolder}/>
       {/* <Route exact path="/test/backend" component={TestBackend} /> */}
     </Switch>

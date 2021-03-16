@@ -72,6 +72,8 @@ def get_tag(tag_id, folder_id):
 @router.route("/folders/<int:folder_id>/tags", methods=["POST"])
 @secure_route
 def create_tag(folder_id):
+    console.log('request.json in tag post', request.json)
+    
     tag_dictionary = request.json
     folder = Folder.query.get(folder_id)
 
