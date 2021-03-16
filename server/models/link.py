@@ -27,3 +27,4 @@ class Link(db.Model, BaseModel):
 
     
 
+# 

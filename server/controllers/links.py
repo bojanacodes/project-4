@@ -32,6 +32,7 @@ router = Blueprint(__name__, "links")
 @secure_route
 def get_all_folder_links(folder_id):
 
+
     folder = Folder.query.get(folder_id)
     
     id_to_search = folder_id
@@ -73,6 +74,7 @@ def get_single_link(folder_id, link_id):
 @router.route("/folders/<int:folder_id>/links", methods=["POST"])
 @secure_route
 def make_link(folder_id):
+    print('request json in post link controller', request.json)
     link_dictionary = request.json
   
     try:

@@ -12,7 +12,7 @@ const inputFields = ['name', 'description', 'URL', 'image']
 
 
 
-export default function LinkForm({ formData, handleSubmit, handleChange, handleTagChange, folderId, tagsData }) {
+export default function LinkForm({ formData, handleSubmit, handleChange, handleTagChange, tagsData }) {
 
 
 
@@ -56,7 +56,7 @@ export default function LinkForm({ formData, handleSubmit, handleChange, handleT
         />
 
 
-        <label className="label">
+        {/* <label className="label">
           {'Importance'}
         </label>
         <div className="control">
@@ -72,7 +72,7 @@ export default function LinkForm({ formData, handleSubmit, handleChange, handleT
             <input type="radio" name="answer" onChange={handleChange}/>
                 Low
           </label>
-        </div>
+        </div> */}
 
 
         <button className="button mt-5 is-success">Submit</button>

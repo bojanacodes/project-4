@@ -5,15 +5,15 @@ import LinkForm from './LinkForm'
 
 export default function CreateLink({ match, history }) {
 
-  const folderId = match.params.folder_id
+  const folderId = match.params.folderId
 
   const [formData, updateFormData] = useState({
     name: '',
     description: '',
     URL: '',
     image: '',
-    tags: [],
-    importance: ''
+    tags: []
+    //importance: ''
   })
 
   const token = localStorage.getItem('token')
@@ -23,11 +23,12 @@ export default function CreateLink({ match, history }) {
   useEffect(() => {
     async function fetchTags() {
       try {
-        // const { data } = await axios.get(`/api/folders/${folderId}/tags`)
-        const { data } = await axios.get('/api/tags')
+        const { data } = await axios.get(`/api/folders/${folderId}/tags`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
 
         const tagNames = []
-        
+
         data.map(item => tagNames.push({ 'label': item.name, 'value': item.name }))
 
         console.log('tag names', tagNames)
@@ -39,7 +40,7 @@ export default function CreateLink({ match, history }) {
       }
     }
     fetchTags()
-  }, [])  
+  }, [])
 
   function handleChange(event) {
 
@@ -48,16 +49,13 @@ export default function CreateLink({ match, history }) {
 
   function handleNewTagsSubmit(newTags) {
 
-    // const newTags = newFormData.tags.filter(item => item.tags.__isNew__ === true)
-
-    //! Check this
     newTags.forEach(item => {
       try {
         const { data } = axios.post(`/api/folders/${folderId}/tags`, { 'name': item.value }, {
           headers: { Authorization: `Bearer ${token}` }
         })
           .then(data => {
-            console.log(data)
+            console.log('data after posting new tags', data)
           })
       } catch (err) {
         console.log(err.response.data)
@@ -67,10 +65,10 @@ export default function CreateLink({ match, history }) {
 
   async function handleSubmit(event) {
     event.preventDefault()
-    
+
 
     const newFormData = {
-      ...formData,
+      ...formData
       //tags: formData.tags.map(type => type.value)
     }
 
@@ -78,16 +76,33 @@ export default function CreateLink({ match, history }) {
 
     const newTags = newFormData.tags.filter(item => item.__isNew__ === true)
 
+    console.log('new tags', newTags)
+
     if (newTags.length > 0) {
       handleNewTagsSubmit(newTags)
     }
 
+    const newFormDataToPost = {
+      ...newFormData,
+      tags: newFormData.tags.map(tag => tag.value)
+    //   tags: newFormData.tags.map(tag => {
+    //     return {
+    //       'name': tag.value
+    //     }
+    //   })
+    }
+
+    //tags: formData.tags.map(type => type.value)
+
+    console.log('newformdatatopost', newFormDataToPost)
+
     try {
-      const { data } = await axios.post(`/api/folders/${folderId}/links`, newFormData, {
+      const { data } = await axios.post(`/api/folders/${folderId}/links`, newFormDataToPost, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log(data._id)
-      history.push(`/folders/${folderId}/links/${data._id}`)
+      console.log('data id', data._id)
+      // history.push(`/folders/${folderId}/links/${data._id}`)
+      history.push(`/folders/${folderId}/links`)
     } catch (err) {
       console.log(err.response.data)
     }
@@ -95,7 +110,7 @@ export default function CreateLink({ match, history }) {
 
 
 
-  //! Check how to pass folderId to LinkForm component
+
   //!Check how handleTagChange works
 
   //! Add tagsData to pass 
@@ -104,7 +119,6 @@ export default function CreateLink({ match, history }) {
     handleTagChange={(tags) => updateFormData({ ...formData, tags })}
     handleSubmit={handleSubmit}
     formData={formData}
-    folderId={folderId}
     tagsData={tagsData}
   />
 }
