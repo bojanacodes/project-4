@@ -88,12 +88,12 @@ const NavBar = ({ history }) => {
             {!loggedIn && <Link to="/login" className="button" id="reg-log-button">
               Login
             </Link>}
-            {loggedIn && <button onClick={handleLogout} className="button" id="reg-log-button">
-              Logout
-            </button>}
             {loggedIn && <Link to={`/profile/${loggedIn}`} className="button" id="reg-log-button">
               {email}
             </Link>}
+            {loggedIn && <button onClick={handleLogout} className="button" id="reg-log-button">
+              Logout
+            </button>}
 
           </div>
         </div>

@@ -4,7 +4,8 @@ import React from 'react'
 
 // import Select from 'react-select'
 
-const inputFields = ['name', 'tag', 'collaborator']
+// const inputFields = ['name', 'tag', 'collaborator']
+const inputFields = ['name']
 
 
 export default function FolderForm({ formData, handleSubmit, handleChange }) {
