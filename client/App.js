@@ -17,6 +17,10 @@ import Workspace from './components/Workspace'
 import UserProfile from './components/UserProfile'
 import CreateLink from './components/CreateLink'
 
+
+// import UpdateFolder from './components/UpdateFolder'
+import CreateFolder from './components/CreateFolder'
+
 const App = () => (
   <BrowserRouter>
     <Navbar />
@@ -29,6 +33,7 @@ const App = () => (
       <Route exact path="/folders/:folderId/links" component={CreateLink} />
      
 
+      <Route exact path="/newfolder" component={CreateFolder}/>
       {/* <Route exact path="/test/backend" component={TestBackend} /> */}
     </Switch>
   </BrowserRouter>
