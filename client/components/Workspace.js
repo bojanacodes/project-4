@@ -48,6 +48,9 @@ export default function Workspace() {
                   <div className="media">
                     <div className="media-content">
                       <p className="title is-4">{folder.name}</p>
+                      {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="reg-log-button">
+                        Edit
+                      </Link>}
                     </div>
                   </div>
                 </div>
@@ -55,6 +58,19 @@ export default function Workspace() {
             </Link>
           </div>
         })}
+        <div className="column is-one-third-desktop is-half-tablet is-half-mobile">
+          <Link to={'/folders/new-folder'}>
+            <div className="card">
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">Add a new folder</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
       </div>
 
       <Link to={'/test/make-link'} className="button is-primary is-light mb-2">Test create a link</Link>

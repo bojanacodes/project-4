@@ -24,7 +24,7 @@ def get_all_the_folders():
 @secure_route
 def get_single_folder(folder_id):
     folder = Folder.query.get(folder_id)
-
+    print('folder')
     if not folder:
         return { 'message': 'Folder not found' }, 404
 
@@ -66,6 +66,7 @@ def update_folder(folder_id):
 
     existing_folder = Folder.query.get(folder_id)
     folder_dictionary = request.json
+
 
     try:
         for item in g.current_user.folders:

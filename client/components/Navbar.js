@@ -3,19 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { getLoggedInUserId } from '../lib/auth'
 import axios from 'axios'
 const NavBar = ({ history }) => {
-  const [username, updateUsername] = useState('')
+  const [email, updateEmail] = useState('')
   const token = localStorage.getItem('token') 
   
-  // function handleLogout() {
-  //   const token = localStorage.getItem('token')
-  //   console.log('jednorozec')
-  //   console.log(token)
-  //   localStorage.removeItem(token)
-  //   history.push('/login')
-  // }
+
 
   // ! handle logout does not work
-  async function handleLogout() {
+  function handleLogout() {
    
    
     try {
@@ -25,8 +19,8 @@ const NavBar = ({ history }) => {
       // console.log(token)
       localStorage.clear()
       // localStorage.removeItem(token)
-      // console.log(localStorage)
-      updateUsername('')
+      console.log(localStorage)
+      updateEmail('')
       history.push('/login')
     } catch (err) {
       // ? Handle any error in here.
@@ -46,8 +40,11 @@ const NavBar = ({ history }) => {
             headers: { Authorization: `Bearer ${token}` }
           })
           if (data) {
-            updateUsername(data.username)
-            // console.log(username)
+            console.log('this is data.email ' + data)
+            console.log(data)
+            updateEmail(data.email)
+            console.log('email')
+            console.log(email)
           }
         } catch (err) {
           console.log(err)
@@ -55,7 +52,7 @@ const NavBar = ({ history }) => {
       }
     }
     fetchData()
-  }, [])
+  }, [loggedIn])
 
 
   // console.log('this is it')
@@ -85,9 +82,13 @@ const NavBar = ({ history }) => {
             {!loggedIn && <Link to="/login" className="button" id="reg-log-button">
               Login
             </Link>}
+            {loggedIn && <Link to={`/profile/${loggedIn}`} className="button" id="reg-log-button">
+              {email}
+            </Link>}
             {loggedIn && <button onClick={handleLogout} className="button" id="reg-log-button">
               Logout
             </button>}
+
           </div>
         </div>
       </div>
@@ -95,4 +96,4 @@ const NavBar = ({ history }) => {
   </nav>
 }
 
-export default NavBar
+export default withRouter(NavBar)

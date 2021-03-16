@@ -8,14 +8,15 @@ export default function CreateFolder({ history }) {
   
 
   const [formData, updateFormData] = useState({
-    name: '',
-    tag: '',
-    collaborators: ''
+    name: ''
+    // tag: '',
+    // collaborators: ''
   })
 
   function handleChange(event) {
     updateFormData({ ...formData, [event.target.name]: event.target.value })
   }
+  //
   
 
   async function handleSubmit(event) {

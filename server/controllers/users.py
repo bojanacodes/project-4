@@ -3,6 +3,7 @@ from models.user import User
 from serializers.user import UserSchema
 from marshmallow.exceptions import ValidationError
 from decorators.secure_route import secure_route
+from models.folder import Folder
 
 user_schema = UserSchema()
 
@@ -103,4 +104,24 @@ def delete_profile():
     return { 'message': 'User deleted successfully' }, 200
 
 
+# # add a collaborator
+# @router.route("/folders/<int:folder_id>/users", methods=["POST"])
+# @secure_route
+# def add_user(folder_id):
+#     user_dictionary = request.json
+#     folder = Folder.query.get(folder_id)
 
+#     try:
+#         for item in g.current_user.folders:
+
+#             if item.id == folder_id:
+
+#                 user = user_schema.load(user_dictionary)
+#                 user.save()
+#                 folder.tags.append(user)
+#                 folder.save()
+#                 return tag_schema.jsonify(tag), 200
+#     except ValidationError as e:
+#         return {"errors": e.messages, "messages": "Something went wrong"}
+
+#     return {'errors': 'This is not your folder!'}, 401

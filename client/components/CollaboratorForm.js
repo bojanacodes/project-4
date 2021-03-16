@@ -1,20 +1,16 @@
 import React from 'react'
 
 
-
-// import Select from 'react-select'
-
-// const inputFields = ['name', 'tag', 'collaborator']
-const inputFields = ['name']
+const inputFields = ['email']
 
 
-export default function FolderForm({ formData, handleSubmit, handleChange }) {
-  
+export default function CollaboratorForm({ formEmailData, handleSubmitCollaborator, handleEmailChange }) {
+
   return <div className="section">
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmitCollaborator}>
         {inputFields.map(field => {
-          
+
           return <div key={field} className="field">
             <label className="label">
               {field[0].toUpperCase() + field.slice(1)}
@@ -23,14 +19,14 @@ export default function FolderForm({ formData, handleSubmit, handleChange }) {
               <input
                 className="input"
                 type="text"
-                value={formData[field]}
-                onChange={handleChange}
+                value={formEmailData[field]}
+                onChange={handleEmailChange}
                 name={field}
               />
             </div>
           </div>
         })}
-        <button className="button mt-5 is-success">Save</button>
+        <button className="button mt-5 is-success">Add the collaborator</button>
       </form>
     </div>
   </div>
