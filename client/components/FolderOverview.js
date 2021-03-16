@@ -17,34 +17,38 @@ export default function FolderOverview({ history, match }) {
 
   useEffect(() => {
     async function fetchData() {
-      
-      if (loggedIn) {
-        try {
-          const { data } = await axios.get('/api/profile', {
-            headers: { Authorization: `Bearer ${token}` }
-          })
-          if (data) {
-            updateLinkas(data.email)
-          }
-        } catch (err) {
-          console.log(err)
+
+
+      try {
+        const { data } = await axios.get(`/api/folders/${folderId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        if (data) {
+          console.log(data.links)
+          updateLinks(data.links)
+  
+
+
         }
+      } catch (err) {
+        console.log(err)
       }
+
     }
     fetchData()
-  }, [loggedIn])
+  }, [])
 
 
   return <div>
 
     <section id="left">
       <aside className="menu">
-        
+
         <p className="menu-label">
           Available folders
         </p>
         <ul className="menu-list">
-          
+
           <li>
             <a className="is-active">Manage Your Team</a>
             <ul>
@@ -53,14 +57,39 @@ export default function FolderOverview({ history, match }) {
               <li><a>Add a member</a></li>
             </ul>
           </li>
-          
+
         </ul>
-        
+
       </aside>
     </section>
 
 
-    <section id="right"></section>
+    <section id="right">
+
+      {links.map((link, index) => {
+        return <div key={index} className="column is-one-third-desktop is-half-tablet is-half-mobile">
+          <Link to={`/folders/${folderId}/links/${link.id}`}>
+            <div className="card">
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{link.name}</p>
+                    {<Link to={`/folders/edit-folder/${link.id}`} className="button" id="reg-log-button">
+                      Edit
+                      </Link>}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      })}
+
+
+
+
+
+    </section>
   </div>
 
 }
