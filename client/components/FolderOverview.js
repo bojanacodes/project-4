@@ -153,7 +153,7 @@ export default function FolderOverview({ history, match }) {
                     <div id="folder-overview-card">
                       <p className="title is-4">{link.name}</p>
                       <span>
-                        {<Link to={`/folders/edit-folder/${link.id}`} className="button" id="reg-log-button">
+                        {<Link to={`/folders/${folderId}/links/${link.id}/edit`} className="button" id="reg-log-button">
                           Edit
                       </Link>}
                       </span>
