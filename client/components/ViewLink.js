@@ -6,6 +6,9 @@ export default function ViewLink({ match, history }) {
   const linkId = match.params.linkId
   const folderId = match.params.folderId
   const [linkData, updateLinkData] = useState({})
+  const [loading, updateLoading] = useState(true)
+
+  const [linkDataTags, updateLinkDataTags] = useState({})
 
   const token = localStorage.getItem('token')
 
@@ -16,6 +19,12 @@ export default function ViewLink({ match, history }) {
           headers: { Authorization: `Bearer ${token}` }
         })
         updateLinkData(data)
+        console.log(data.tags)
+        updateLinkDataTags(data.tags)
+        updateLoading(false)
+        // console.log('show me the link data')
+        // console.log(linkData)
+
       } catch (err) {
         console.log(err)
       }
@@ -23,20 +32,49 @@ export default function ViewLink({ match, history }) {
     getLink()
   }, [])
 
+  if (loading) {
+    return <div className='loading'>
+      <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-folder-overview" />
+    </div>
+  }
+
   return <div className="columns">
-    <div className="column">
-      <Link to={{ pathname: `${linkData.url}` }} target="_blank"><h1 className="title">{linkData.name}</h1></Link>
-      <h2 className="subtitle">{`Description: ${linkData.description}`}</h2>
+    <div className="container is-centered">
 
-      {/* Add image link */}
+
+
+      <article className="panel" id="panel-update-folder">
+        <section>
+          <Link to={{ pathname: `${linkData.url}` }} target="_blank"><h3 className="title is-3 panel-heading" id="h3-update-folder">{linkData.name}</h3></Link>
+          <div id="textbox-link-overview">
+            <h2 className="subtitle"> <strong>Description: </strong>{linkData.description}</h2>
+
+            {/* Add image link */}
+
+            <h2 className="subtitle"><strong>Importance: </strong>{linkData.importance}</h2>
+            <h2 className="subtitle"><strong>Tags: </strong>
+
+
+
+              {linkDataTags.map((tag, index) => {
+                return <span key={index}>
+                  <a>{tag.name}, </a>
+                </span>
+              })}
+
+
+
+            </h2>
+
+
+
+          </div>
+        </section>
+      </article>
 
     </div>
+  </div>
 
-    <div className="column">
-      <h2 className="subtitle">{`Importance: ${linkData.importance}`}</h2>
-    </div>
-
-  </div >
 
 
 

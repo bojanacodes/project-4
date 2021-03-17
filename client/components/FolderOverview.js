@@ -123,6 +123,7 @@ export default function FolderOverview({ history, match }) {
             <li>
               <a className="text-background-folder-name">{folderName}</a>
               <ul>
+                <li><a>All</a></li>
                 {tagsNames.map((tag, index) => {
                   return <span key={index}>
                     <li><a>{tag.name}</a></li>

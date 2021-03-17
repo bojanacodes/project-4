@@ -34,7 +34,7 @@ const App = () => (
       <Route exact path="/profile/:userId" component={UserProfile} />
       <Route exact path="/folders/new-folder" component={CreateFolder}/>
       <Route exact path="/folders/edit-folder/:folderId" component={UpdateFolder}/>
-      <Route exact path="/newfolder" component={CreateFolder}/>
+      {/* <Route exact path="/newfolder" component={CreateFolder}/> */}
       <Route exact path="/folders/:folderId/links/new-link" component={CreateLink} />
       <Route exact path="/folders/:folderId" component={FolderOverview} />
       <Route exact path="/folders/:folderId/links/:linkId" component={ViewLink} />
