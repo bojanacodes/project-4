@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Comments from './Comments.js'
+import Moment from 'react-moment'
 
 export default function ViewLink({ match, history }) {
   const linkId = match.params.linkId
@@ -51,6 +53,15 @@ export default function ViewLink({ match, history }) {
             <h2 className="subtitle"> <strong>Description: </strong>{linkData.description}</h2>
          
             {/* Add image link */}
+            <h2 className="subtitle"><strong>Data Added: </strong>
+            <Moment format="DD/MM/YYYY">
+            {linkData.created_at}
+                      </Moment>
+            
+            </h2>
+
+
+
 
             <h2 className="subtitle"><strong>Importance: </strong>{linkData.importance}</h2>
             <h2 className="subtitle"><strong>Tags: </strong>
@@ -66,8 +77,9 @@ export default function ViewLink({ match, history }) {
 
 
             </h2>
-
-
+ 
+            <Comments linkId={linkId} folderId={folderId}
+            />
 
           </div>
         </section>

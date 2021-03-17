@@ -16,9 +16,18 @@
 }
 
 //Workspace
-#tille-workspace {
-  color: #36699F;
-  margin: 20px 10px 30px 40px;
+
+
+#main-workspace-flexbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#title-workspace {
+  color: #0C1723;
+  font-size: 47px;
+  margin: 20px 10px 30px 60px;
 }
 #loader-workspace {
   width: 50px;
@@ -30,18 +39,39 @@
 }
 
 #cards-workspace:hover{
-  background-color: #BDD2E8;
+  background-color: #305D8D;
 }
 #cards-workspace{
-  background-color: #F6F9FC;
+  background-color: #2A527B;
 }
 #cards-new-folder {
   background-color: #8A7AD1;
 }
+#cards-new-folder:hover {
+  background-color: #A397DB;
+}
+
 #workspace-card-flexbox {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+#workspace-cards-text {
+  color: #F6F9FC;
+}
+
+#workspace-button {
+  margin: 2px;
+  padding: 3px;
+  background-color: #ECF2F8;
+  color: #24466A;
+  font-size: 12px;
+}
+
+#workspace-buttons-flexbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
 }
 // #cards-workspace:hover{
 //   background-color: #7AD1C4;
@@ -81,7 +111,10 @@ justify-content: space-between;
 }
 
 .text-background-folder-name {
-  background-color: #7AD1C4;
+  background-color: #2A527B;
+  color: #ECF2F8;
+  padding: 20px;
+  font-size: 30px;
 }
 .is-active {
   color: #7AD1C4;
@@ -90,7 +123,12 @@ justify-content: space-between;
 
 #button-add-link {
   background-color: #8A7AD1;
-  padding: 20px;
+  padding: 30px;
+  margin-top: 80px;
+}
+#button-add-link:hover {
+  background-color: #A397DB;
+ 
 }
 #link-wrapper{
 padding: 10px;
@@ -106,11 +144,20 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 }
+#folder-overview-link-cards:hover {
+ background-color: #D0DFEF;
+  }
 
 #add-link {
   width: 30px;
   margin: 2px 5px 2px 5px;
 }
+
+#link-card-text {
+  color: #305D8D;
+}
+
+
 //!general styling rules
 .card:hover {
   color:#D0DFEF;
@@ -123,6 +170,7 @@ justify-content: space-between;
 //! Update folder styles
 #panel-update-folder {
   margin: 20px 0px 0px 0px;
+
 }
 
 #h3-update-folder {
@@ -132,7 +180,7 @@ justify-content: space-between;
 //! home page
 
 #hero-image {
-  background-image: url("https://images.unsplash.com/photo-1457694587812-e8bf29a43845?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1651&q=80");
+  background-image: url("https://res.cloudinary.com/dm4usld2h/image/upload/v1616010906/maarten-van-den-heuvel-8EzNkvLQosk-unsplash_uk2kss.jpg");
   background-size: cover;
 }
 
@@ -203,4 +251,47 @@ justify-content: center;
 
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+//comments
+#comment-title {
+  // margin: 0px 0px 0px 20px;
+  background: #24466A;
+  color: #F6F9FC;
+
+}
+
+#inside-comment-panel {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 50px 10px 40px;
+}
+// .media-content {
+//   
+// }
+
+#submit-comment {
+  margin: 40px;
+}
+#main-comment-box {
+  padding: 10px;
+}
+
+.fas.fa-home {
+  color: magenta;
+}
+.breadcrumb ul{ 
+  margin-top:24px; 
+  margin-left: 20px;
+ 
+} 
+#breadcrumb-font {
+  color: #24466A;
+}
+
+#breadcrumb-font:hover {
+  color: #3C74B0;
 }

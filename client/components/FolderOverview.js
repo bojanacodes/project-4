@@ -175,7 +175,7 @@ export default function FolderOverview({ history, match }) {
           <ul className="menu-list">
 
             <li>
-              <div className="text-background-folder-name">{folderName}</div>
+              <div className="title is-3 text-background-folder-name">{folderName}</div>
               <ul>
                 <li><div className="button" onClick={(event) => filteringData(event.target.innerHTML)}>All</div></li>
                 {tagsNames.map((tag, index) => {
@@ -197,35 +197,56 @@ export default function FolderOverview({ history, match }) {
 
     <section id="middle-side-folder-layout">
 
-      <div className="title is-2">{folderName} links</div>
-      <div className="button" onClick={sortLinks}>Sort by importance</div>
-      <div className="button" onClick={() => filteringData('All')}>Sort by date added</div>
+      {/* <div className="title is-2">{folderName} links</div> */}
 
+
+      <nav className="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <a href="#" id="breadcrumb-font">
+              {/* <span className="icon is-small"> */}
+              {/* <i className="fas fa-home" aria-hidden="true"></i> */}
+              {/* </span> */}
+              <div onClick={sortLinks}>Sort by importance</div>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="breadcrumb-font">
+              {/* <span className="icon is-small"> */}
+              {/* <i className="fas fa-book" aria-hidden="true"></i> */}
+              {/* </span> */}
+              <div onClick={() => filteringData('All')}>Sort by date added</div>
+            </a>
+          </li>
+
+
+        </ul>
+      </nav>
 
       {links.map((link, index) => {
-        return <div key={index} className="column is-four-fifths-desktop is-four-fifths-tablet is-half-mobile">
-          {/* <Link to={`/folders/${folderId}/links/${link.id}`}> */}
-          <div className="card">
-            <div className="card-content">
-              <div className="media">
-                <div className="media-content" >
-                  <div id="folder-overview-card">
-                    <Link to={`/folders/${folderId}/links/${link.id}`} className="title is-4">{link.name}</Link>
-                    {/* <p className="title is-4">{link.name}</p> */}
-                    <span>
-                      {<Link to={`/folders/edit-folder/${link.id}`} className="button" id="reg-log-button">
-                        Edit</Link>}
-                    </span>
-                  </div>
-                  <div id="comments">
-                    Importance: <strong> {link.importance}</strong>
-                  </div>
+        return <div key={index} className="column is-full-desktop is-four-fifths-tablet is-half-mobile">
+          <Link to={`/folders/${folderId}/links/${link.id}`}>
+            <div className="card">
+              <div className="card-content" id="folder-overview-link-cards">
+                <div className="media">
+                  <div className="media-content" >
+                    <div id="folder-overview-card">
+                      <h4 className="title is-4">{link.name}</h4>
+                      {/* <p className="title is-4">{link.name}</p> */}
+                      <span>
+                        {<Link to={`/folders/edit-folder/${link.id}`} className="button" id="reg-log-button">
+                          Edit</Link>}
+                      </span>
+                    </div>
+                    <div id="link-card-text">
+                      Importance: <strong> {link.importance}</strong>
+                    </div>
 
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* </Link> */}
+          </Link>
         </div>
       })}
 

@@ -38,9 +38,9 @@ export default function Workspace() {
     </div>
   }
 
-  return <div>
+  return <div id="main-workspace-flexbox">
 
-    <h1 className="title is=one" id="tille-workspace">Welcome to your workspace</h1>
+    <h1 className="title is-one" id="title-workspace">Welcome to your workspace</h1>
 
 
 
@@ -54,13 +54,13 @@ export default function Workspace() {
                 <div className="card-content">
                   <div className="media">
                     <div className="media-content" id="workspace-card-flexbox">
-                      <p className="title is-4">{folder.name}</p>
-                      <span>
-                        {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="reg-log-button">
-                          Edit
+                      <p className="title is-4" id="workspace-cards-text">{folder.name}</p>
+                      <span id="workspace-buttons-flexbox">
+                        {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="workspace-button">
+                          Edit 
                         </Link>}
-                        {<Link to={`/folders/${folder.id}/links/new-link`} className="button">
-                        Add link
+                        {<Link to={`/folders/${folder.id}/links/new-link`} className="button" id="workspace-button">
+                        Add a link
                         </Link>}
                       </span>
                     </div>
@@ -76,7 +76,7 @@ export default function Workspace() {
               <div className="card-content">
                 <div className="media">
                   <div className="media-content">
-                    <p className="title is-4">Add a new folder</p>
+                  <p className="title is-4">Add a new folder</p> <img src='https://image.flaticon.com/icons/png/128/1828/1828926.png' id="add-link"/>
                   </div>
                 </div>
               </div>

@@ -60,7 +60,7 @@ const NavBar = ({ history }) => {
   return <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-menu is-active">
       <div className="navbar-start">
-        <img className="navbar-logo" src="/images/logo.png" />
+        <img className="navbar-logo" src="https://res.cloudinary.com/dm4usld2h/image/upload/v1616010974/logo_k93xtd.png" />
         <div className="navbar-item">
           <div className="buttons">
             {!loggedIn && <Link to="/" className="button" id="nav-left-buttons">
