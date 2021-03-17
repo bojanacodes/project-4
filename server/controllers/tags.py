@@ -50,6 +50,11 @@ def get_tags(folder_id):
 
 #! get all links in a particular folder with a particular tag
 
+
+
+
+#! get particular tag and links associated with it
+
 @router.route("/folders/<int:folder_id>/tags/<int:tag_id>", methods=["GET"])
 @secure_route
 def get_tag(tag_id, folder_id):
