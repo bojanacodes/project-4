@@ -32,7 +32,7 @@ export default function Workspace() {
 
   if (loading) {
     return <div className='loading'>
-      <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-workspace"/>
+      <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-workspace" />
     </div>
   }
 
@@ -40,7 +40,7 @@ export default function Workspace() {
 
     <h1 className="title is=one" id="tille-workspace">Welcome to your workspace</h1>
 
-   
+
 
 
     <div className="container">
@@ -51,11 +51,13 @@ export default function Workspace() {
               <div className="card" id="cards-workspace">
                 <div className="card-content">
                   <div className="media">
-                    <div className="media-content">
+                    <div className="media-content" id="workspace-card-flexbox">
                       <p className="title is-4">{folder.name}</p>
-                      {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="reg-log-button">
-                        Edit
+                      <span>
+                        {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="reg-log-button">
+                          Edit
                       </Link>}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -78,7 +80,7 @@ export default function Workspace() {
         </div>
       </div>
 
-      <Link to={'/test/make-link'} className="button is-primary is-light mb-2">Test create a link</Link>
+      {/* <Link to={'/test/make-link'} className="button is-primary is-light mb-2">Test create a link</Link> */}
     </div>
   </div>
 

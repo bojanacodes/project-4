@@ -28,12 +28,19 @@
 }
 
 #cards-workspace:hover{
-  background-color: #7AD1C4;
+  background-color: #BDD2E8;
+}
+#cards-workspace{
+  background-color: #F6F9FC;
 }
 #cards-new-folder {
   background-color: #8A7AD1;
 }
-
+#workspace-card-flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 // #cards-workspace:hover{
 //   background-color: #7AD1C4;
 // }
@@ -79,12 +86,12 @@ justify-content: space-between;
 
 //!general styling rules
 .card:hover {
-  color:#03d6d2;
+  color:#D0DFEF;
 }
 
-.card-content {
-  color:#03d6d2 !important;
-}
+// .card {
+//   color:#03d6d2 !important;
+// }
 
 //! Update folder styles
 #panel-update-folder {
@@ -92,7 +99,7 @@ justify-content: space-between;
 }
 
 #h3-update-folder {
-  background-color: #7AD1C4;
+  background-color: #C6D8EB;
 }
 
 //! home page
@@ -148,4 +155,9 @@ justify-content: center;
 //registration
 #registration-form {
   width: 40%;
+}
+
+//update page
+#folder-delete-button {
+  margin: 10px 0px 40px 25px;
 }

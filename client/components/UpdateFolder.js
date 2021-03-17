@@ -131,7 +131,7 @@ export default function UpdateFolder({ history, match }) {
           formEmailData={formEmailData}
         />
       
-      <button className="button is-danger mt-5" onClick={handleDeleteFolder}>Delete this folder</button>
+      <button className="button is-danger mt-5" onClick={handleDeleteFolder} id="folder-delete-button">Delete this folder</button>
       </article>
     </div>
 
