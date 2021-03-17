@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { BrowserRouter, Switch, Link, Route } from 'react-router-dom'
 import axios from 'axios'
 
-app = Flask(__name__, static_folder='dist')
 
 //import stylesheets
 import 'bulma'
