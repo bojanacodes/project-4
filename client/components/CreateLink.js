@@ -11,7 +11,6 @@ export default function CreateLink({ match, history }) {
     name: '',
     description: '',
     url: '',
-    image: '',
     tags: [],
     importance: ''
   })
@@ -123,7 +122,7 @@ export default function CreateLink({ match, history }) {
     }
 
 
-    const newFormDataToPost = { 'name': newFormData.name, 'description': newFormData.description, 'url': newFormData.URL, 'image': newFormData.image, 'importance': newFormData.importance }
+    const newFormDataToPost = { 'name': newFormData.name, 'description': newFormData.description, 'url': newFormData.URL, 'importance': newFormData.importance }
 
 
     // console.log('newformdatatopost', newFormDataToPost)

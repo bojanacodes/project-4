@@ -4,7 +4,7 @@ import axios from 'axios'
 import CreatableSelect from 'react-select/creatable';
 
 
-const inputFields = ['name', 'description', 'URL', 'image']
+const inputFields = ['name', 'description', 'URL']
 
 
 //! Add on change function to handle importance radio button selection

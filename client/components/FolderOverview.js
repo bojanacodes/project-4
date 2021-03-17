@@ -108,29 +108,39 @@ export default function FolderOverview({ history, match }) {
 
     const sortedArray = []
 
-    permanentData.filter(item => {
+    console.log('1', links)
+
+    links.filter(item => {
       if (item.importance === 'High') {
         sortedArray.push(item)
       }
     })
 
-    permanentData.filter(item => {
+    console.log('High', sortedArray)
+
+    links.filter(item => {
       if (item.importance === 'Medium') {
         sortedArray.push(item)
       }
     })
 
-    permanentData.filter(item => {
+    console.log('medium', sortedArray)
+
+    links.filter(item => {
       if (item.importance === 'Low') {
         sortedArray.push(item)
       }
     })
 
-    permanentData.filter(item => {
+    console.log('low', sortedArray)
+
+    links.filter(item => {
       if (item.importance === '') {
         sortedArray.push(item)
       }
     })
+
+    console.log('empty str', sortedArray)
 
     updateLinks(sortedArray)
 
