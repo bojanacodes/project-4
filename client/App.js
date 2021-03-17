@@ -17,6 +17,7 @@ import Workspace from './components/Workspace'
 import UserProfile from './components/UserProfile'
 import CreateLink from './components/CreateLink'
 import FolderOverview from './components/FolderOverview'
+import Comments from './components/Comments'
 
 import UpdateFolder from './components/UpdateFolder'
 import CreateFolder from './components/CreateFolder'
@@ -39,6 +40,7 @@ const App = () => (
       {/* <Route exact path="/test/backend" component={TestBackend} /> */}
       <Route exact path="/folders/:folderId/links/new-link" component={CreateLink} />
       <Route exact path="/folders/:folderId" component={FolderOverview} />
+      <Route exact path="/test-comments" component={Comments} />
     </Switch>
   </BrowserRouter>
 )

@@ -47,8 +47,8 @@ export default function Register({ history }) {
   console.log(formData)
 
   return <div className="section">
-    <div className="container">
-      <form onSubmit={handleSubmit}>
+    <div className="container" id="container-form">
+      <form onSubmit={handleSubmit} id='registration-form'>
         <div className="field">
           <label className="label">Username</label>
           <div className="control">

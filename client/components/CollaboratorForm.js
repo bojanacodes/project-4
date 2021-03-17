@@ -9,6 +9,7 @@ export default function CollaboratorForm({ formEmailData, handleSubmitCollaborat
   return <div className="section">
     <div className="container">
       <form onSubmit={handleSubmitCollaborator}>
+        
         {inputFields.map(field => {
 
           return <div key={field} className="field">
@@ -26,7 +27,9 @@ export default function CollaboratorForm({ formEmailData, handleSubmitCollaborat
             </div>
           </div>
         })}
-        <button className="button mt-5 is-success">Add the collaborator</button>
+        <p>For adding collaborators into this folder, please insert email addresses above.</p>
+
+        <button className="button mt-5">Add the collaborator</button>
       </form>
     </div>
   </div>

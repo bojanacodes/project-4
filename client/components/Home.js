@@ -12,14 +12,14 @@ export default function Home() {
   // }
 
   return <section className="heropage">
-    <section className="hero is-fullheight">
-      <div className="hero-body">
+    <section className="hero is-fullheight-with-navbar" id="hero-image">
+      <div className="hero-body" id="hero-image">
         <div className="">
-          <p className="title">
+          <p className="title" id="home-title">
             UReaLm
           </p>
-          <p className="subtitle">
-            Place to store your links
+          <p className="subtitle" id="home-subtitle">
+            Keep your links orgnized. For real.
           </p>
         </div>
       </div>

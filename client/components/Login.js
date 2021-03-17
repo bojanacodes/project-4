@@ -29,9 +29,9 @@ export default function Login({ history }) {
     }
   }
 
-  return <div className="section">
-    <div className="container">
-      <form onSubmit={handleSubmit}>
+  return <div className="section" >
+    <div className="container" id="container-form">
+      <form onSubmit={handleSubmit} id="login-form">
         <div className="field">
           <label className="label">Email</label>
           <div className="control">

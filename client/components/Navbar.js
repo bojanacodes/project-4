@@ -63,10 +63,10 @@ const NavBar = ({ history }) => {
         <img className="navbar-logo" src="/images/logo.png" />
         <div className="navbar-item">
           <div className="buttons">
-            {!loggedIn && <Link to="/" className="button" id="reg-log-button">
+            {!loggedIn && <Link to="/" className="button" id="nav-left-buttons">
               Home
             </Link>}
-            {loggedIn && <Link to="/Workspace" className="button" id="reg-log-button">
+            {loggedIn && <Link to="/Workspace" className="button" id="nav-left-buttons">
               My workspace
             </Link>}
 
@@ -76,16 +76,16 @@ const NavBar = ({ history }) => {
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            {!loggedIn && <Link to="/register" className="button" id="reg-log-button">
+            {!loggedIn && <Link to="/register" className="button" id="nav-right-buttons">
               Register
             </Link>}
-            {!loggedIn && <Link to="/login" className="button" id="reg-log-button">
+            {!loggedIn && <Link to="/login" className="button" id="nav-right-buttons">
               Login
             </Link>}
-            {loggedIn && <Link to={`/profile/${loggedIn}`} className="button" id="reg-log-button">
+            {loggedIn && <Link to={`/profile/${loggedIn}`} className="button" id="nav-right-buttons">
               {email}
             </Link>}
-            {loggedIn && <button onClick={handleLogout} className="button" id="reg-log-button">
+            {loggedIn && <button onClick={handleLogout} className="button" id="nav-right-buttons">
               Logout
             </button>}
 

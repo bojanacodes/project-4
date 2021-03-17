@@ -32,15 +32,15 @@ export default function Workspace() {
 
   if (loading) {
     return <div className='loading'>
-      <img src='https://i.ibb.co/xDS2vQc/loading.gif' />
+      <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-workspace" />
     </div>
   }
 
   return <div>
 
-    <h1>This is workspace</h1>
+    <h1 className="title is=one" id="tille-workspace">Welcome to your workspace</h1>
 
-   
+
 
 
     <div className="container">
@@ -48,17 +48,19 @@ export default function Workspace() {
         {folders.map((folder, index) => {
           return <div key={index} className="column is-one-third-desktop is-half-tablet is-half-mobile">
             <Link to={`/folders/${folder.id}`}>
-              <div className="card">
+              <div className="card" id="cards-workspace">
                 <div className="card-content">
                   <div className="media">
-                    <div className="media-content">
+                    <div className="media-content" id="workspace-card-flexbox">
                       <p className="title is-4">{folder.name}</p>
-                      {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="reg-log-button">
-                        Edit
+                      <span>
+                        {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="reg-log-button">
+                          Edit
                       </Link>}
                       {<Link to={`/folders/${folder.id}/links/new-link`} className="button">
                         Add link
                       </Link>}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -68,7 +70,7 @@ export default function Workspace() {
         })}
         <div className="column is-one-third-desktop is-half-tablet is-half-mobile">
           <Link to={'/folders/new-folder'}>
-            <div className="card">
+            <div className="card" id="cards-new-folder">
               <div className="card-content">
                 <div className="media">
                   <div className="media-content">
@@ -81,7 +83,11 @@ export default function Workspace() {
         </div>
       </div>
 
+<<<<<<< HEAD
       
+=======
+      {/* <Link to={'/test/make-link'} className="button is-primary is-light mb-2">Test create a link</Link> */}
+>>>>>>> development
     </div>
   </div>
 

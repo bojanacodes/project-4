@@ -30,7 +30,7 @@ export default function FolderForm({ formData, handleSubmit, handleChange }) {
             </div>
           </div>
         })}
-        <button className="button mt-5 is-success">Save</button>
+        <button className="button mt-5 " id="folder-form-buttons">Save</button>
       </form>
     </div>
   </div>

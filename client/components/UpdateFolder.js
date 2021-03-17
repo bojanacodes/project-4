@@ -92,7 +92,7 @@ export default function UpdateFolder({ history, match }) {
     updateFormEmailData({ ...formEmailData, [name]: value })
   }
 
- 
+
   if (loading) {
     return <h1>This stuff is clearly not loading </h1>
   }
@@ -115,19 +115,26 @@ export default function UpdateFolder({ history, match }) {
   }
 
   return <div>
-    <FolderForm
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-      formData={formData}
-    />
-    <CollaboratorForm
-      handleEmailChange={handleEmailChange}
-      handleSubmitCollaborator={handleSubmitCollaborator}
-      formEmailData={formEmailData}
-    />
+    <div className="container is-centered">
 
+      <article className="panel" id="panel-update-folder">
+      <h3 className="title is-3 panel-heading" id="h3-update-folder">Update your folder</h3>
 
+        <FolderForm
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          formData={formData}
+        />
+        <CollaboratorForm
+          handleEmailChange={handleEmailChange}
+          handleSubmitCollaborator={handleSubmitCollaborator}
+          formEmailData={formEmailData}
+        />
+      
+      <button className="button is-danger mt-5" onClick={handleDeleteFolder} id="folder-delete-button">Delete this folder</button>
+      </article>
+    </div>
 
-    <button className="button is-danger mt-5" onClick={handleDeleteFolder}>Delete this folder</button>
-  </div>
+    
+  </div >
 }
