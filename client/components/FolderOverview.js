@@ -7,12 +7,17 @@ import { getLoggedInUserId } from '../lib/auth'
 
 export default function FolderOverview({ history, match }) {
   const folderId = match.params.folderId
-  console.log(folderId)
+  console.log('folderId', folderId)
   const [links, updateLinks] = useState([])
   const [folderName, updateFolderName] = useState([])
   const [loading, updateLoading] = useState(true)
   const [tagsNames, updateTagsNames] = useState([])
   const [loadingTags, updateLoadingTags] = useState(true)
+
+  const [filteredTags, updateFilteredTags] = useState([])
+  const [permanentData, updatePermanentData] = useState([])
+
+
 
 
   const loggedIn = getLoggedInUserId()
@@ -20,54 +25,30 @@ export default function FolderOverview({ history, match }) {
 
 
   useEffect(() => {
-    async function fetchData() {
 
-
-      try {
-        const { data } = await axios.get(`/api/folders/${folderId}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        if (data) {
-          console.log(data.links)
-          updateLinks(data.links)
-          updateLoading(false)
-
-
-        }
-      } catch (err) {
-        console.log(err)
-      }
-
-    }
     fetchData()
 
-    async function fetchFolderName() {
-
-
-      try {
-        const { data } = await axios.get(`/api/folders/${folderId}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        if (data) {
-          console.log(data.name)
-          updateFolderName(data.name)
-
-
-
-        }
-      } catch (err) {
-        console.log(err)
-      }
-
-    }
-    fetchFolderName()
-
-
-
-
-
-
   }, [])
+
+  async function fetchData() {
+
+
+    try {
+      const { data } = await axios.get(`/api/folders/${folderId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      if (data) {
+        console.log('data.links', data.links)
+        updateLinks(data.links)
+        updatePermanentData(data.links)
+        updateFolderName(data.name)
+        updateLoading(false)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
 
 
 
@@ -80,22 +61,58 @@ export default function FolderOverview({ history, match }) {
           headers: { Authorization: `Bearer ${token}` }
         })
         if (data) {
-          console.log('names of the tags')
-          console.log(data)
+
+          console.log('fetch tags data', data)
           updateTagsNames(data)
           updateLoadingTags(false)
-          console.log(data)
-
-
-
+          console.log('second fetch tags data', data)
         }
       } catch (err) {
         console.log(err)
       }
-
     }
     fetchTagsNames()
   }, [])
+
+  function filteringData(event) {
+
+    const tagName = event
+
+    console.log('tagName', tagName)
+
+    // console.log('event.target', event.target)
+
+    // console.log('event.target.innerHTML', event.target.innerHTML)
+    if (tagName === 'All') {
+      updateLinks(permanentData)
+    } else {
+      const filteredLinks = []
+
+      permanentData.forEach(link => {
+        link.tags.forEach(tag => {
+          if (tag.name === tagName) {
+            filteredLinks.push(link)
+          }
+        })
+      })
+
+      console.log('filtered links', filteredLinks)
+      updateLinks(filteredLinks)
+
+    }
+
+
+  }
+
+  console.log('filtered tags', filteredTags)
+
+
+
+
+  // function filteringData(tag) {
+  //   updateFilteredStateChange(tag)
+  //   fetchData()
+  // }
 
   if (loading) {
     return <div className='loading'>
@@ -107,6 +124,7 @@ export default function FolderOverview({ history, match }) {
       <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-folder-overview" />
     </div>
   }
+
 
 
   return <div id="folder-overview-flexbox">
@@ -121,11 +139,12 @@ export default function FolderOverview({ history, match }) {
           <ul className="menu-list">
 
             <li>
-              <a className="text-background-folder-name">{folderName}</a>
+              <div className="text-background-folder-name">{folderName}</div>
               <ul>
+                <li><div className="button" onClick={(event) => filteringData(event.target.innerHTML)}>All</div></li>
                 {tagsNames.map((tag, index) => {
                   return <span key={index}>
-                    <li><a>{tag.name}</a></li>
+                    <li><div className="button" value={tag.name} onClick={(event) => filteringData(event.target.innerHTML)}>{tag.name}</div></li>
                   </span>
                 })}
               </ul>
@@ -144,29 +163,28 @@ export default function FolderOverview({ history, match }) {
 
       {links.map((link, index) => {
         return <div key={index} className="column is-four-fifths-desktop is-four-fifths-tablet is-half-mobile">
-          <Link to={`/folders/${folderId}/links/${link.id}`}>
-            <div className="card">
-              <div className="card-content">
-                <div className="media">
-                  <div className="media-content" >
-                    <div id="folder-overview-card">
-                      <p className="title is-4">{link.name}</p>
-                      <span>
-                        {<Link to={`/folders/edit-folder/${link.id}`} className="button" id="reg-log-button">
-                          Edit
-                      </Link>}
-                      </span>
-                    </div>
-                    <div id="comments">
-                      Importance: <strong> {link.importance}</strong>
-
-                    </div>
-
+          {/* <Link to={`/folders/${folderId}/links/${link.id}`}> */}
+          <div className="card">
+            <div className="card-content">
+              <div className="media">
+                <div className="media-content" >
+                  <div id="folder-overview-card">
+                    <Link to={`/folders/${folderId}/links/${link.id}`} className="title is-4">{link.name}</Link>
+                    {/* <p className="title is-4">{link.name}</p> */}
+                    <span>
+                      {<Link to={`/folders/edit-folder/${link.id}`} className="button" id="reg-log-button">
+                        Edit</Link>}
+                    </span>
                   </div>
+                  <div id="comments">
+                    Importance: <strong> {link.importance}</strong>
+                  </div>
+
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
+          {/* </Link> */}
         </div>
       })}
 
