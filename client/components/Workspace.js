@@ -58,10 +58,10 @@ export default function Workspace() {
                       <span>
                         {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="reg-log-button">
                           Edit
-                      </Link>}
-                      {<Link to={`/folders/${folder.id}/links/new-link`} className="button">
+                        </Link>}
+                        {<Link to={`/folders/${folder.id}/links/new-link`} className="button">
                         Add link
-                      </Link>}
+                        </Link>}
                       </span>
                     </div>
                   </div>

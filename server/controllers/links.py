@@ -142,7 +142,8 @@ def remove_link(folder_id, link_id):
 @router.route('/folders/<int:folder_id>/links/<int:link_id>/comments', methods=['POST'])
 @secure_route
 def create_comment(folder_id, link_id):
-
+    print('this is the request')
+    print(request.json)
     comment_dictionary = request.json
 
     link = Link.query.get(link_id)

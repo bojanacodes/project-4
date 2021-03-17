@@ -108,7 +108,6 @@ export default function FolderOverview({ history, match }) {
 
     const sortedArray = []
 
-    //!check if should be small h in High
     permanentData.filter(item => {
       if (item.importance === 'High') {
         sortedArray.push(item)
@@ -186,7 +185,7 @@ export default function FolderOverview({ history, match }) {
 
 
 
-    <section id="right-side-folder-layout">
+    <section id="middle-side-folder-layout">
 
       <div className="title is-2">{folderName} links</div>
       <div className="button" onClick={sortLinks}>Sort by importance</div>
@@ -225,6 +224,15 @@ export default function FolderOverview({ history, match }) {
 
 
     </section>
+
+    <section id="right-side-folder-layout">
+      <div id="link-wrapper">
+        {<Link to={`/folders/${folderId}/links/new-link`} className="button" id="button-add-link">
+          <img src='https://image.flaticon.com/icons/png/128/1828/1828926.png' id="add-link"></img> <p>   Add link</p>
+        </Link>}
+      </div>
+    </section>
+
   </div>
 
 }

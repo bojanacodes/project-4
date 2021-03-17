@@ -1,89 +1,142 @@
+import { isCreator } from '../lib/auth'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { isCreator } from '../lib/auth'
-import { Link } from 'react-router-dom'
+import { getLoggedInUserId } from '../lib/auth'
+import Moment from 'react-moment'
 
-export default function Comment({ match, history }) {
-  const folderId = match.params.folderId
-  const linkId = match.params.linkId
-
-  const [commentsData, updateCommentsData] = useState({})
-  const [loading, updateLoading] = useState(true)
-
-
-  // ! Comment text
-  const [text, setText] = useState('')
+export default function Comments({ }) {
+  // const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [page, updatePage] = useState({})
   const token = localStorage.getItem('token')
+  // const loggedIn = getLoggedInUserId()
+  // const [editNumber, updateEditNumber] = useState(0)
+  // const [commentIdentifier, updateCommentIdentifier] = useState('')
 
   useEffect(() => {
-    async function fetchComments() {
+    async function fetchCommentData() {
       try {
-        // const { data } = await axios.get(`/api/folders/${folderId}/links/${linkId}/`)
-        const { data } = await axios.get('/api/folders/1/links/3', {
+        const { data } = await axios.get('/api/folders/1/links/1', {
           headers: { Authorization: `Bearer ${token}` }
-        })
-        if (data) {
-          console.log('just data')
-          console.log(data)
-          console.log('data.comments')
-          console.log(data.comments)
-          updateCommentsData(data.comments)
-          updateLoading(false)
-          console.log('this should be correct')
-          console.log(commentsData)
         }
 
-
+        )
+        updatePage(data)
+        console.log('this should be data')
+        console.log(data)
       } catch (err) {
         console.log(err)
       }
     }
-    fetchComments()
-  }, [])
+    fetchCommentData()
+  }, [content])
 
 
+  async function handleComment() {
+    const { data } = await axios.post('/api/folders/1/links/1/comments', { content }, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
 
+    // setTitle('')
+    setContent('')
+    // updatePage(data)
 
-
-  // ! Make a comment
-  function handleComment() {
-    // ! Using the comment endpoint, grab the text from our state.
-    axios.post(`/api/folders/${folderId}/links/${linkId}/comments`, { text }, {
+  }
+  async function handleDeleteComment(commentId) {
+    if (!isCreator) {
+      return null
+    }
+    await axios.delete(`/api/folders/1/links/1/comments/${commentId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
-        // ! Clear my textbox
-        setText('')
-        // ! Update the comments with my response data
-        updateCommentsData(resp.data)
+
+        console.log(resp.data)
+       
       })
   }
 
 
-
-  // // ! Delete a comment
-  // function handleDeleteComment(commentId) {
-  //   // ! Delete a comment (we're passing through the comment ID the user
-  //   //  !has clicked on)
-  //   axios.delete(`/api/folders/${folderId}/links/${linkId}/comments/${commentId}`, {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  //     .then(resp => {
-  //       updateComments(resp.data)
-  //     })
-  // }
-
-  // if (!pokemon.user) {
-  //   return null
-  // }
-
-  if (loading) {
-    return <div className='loading'>
-      <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-workspace" />
-    </div>
-  }
   return <div>
-    <h1>he</h1>
+    <div className="container is-centered">
+      <h2 className="title is-2">Share you opinions</h2>
+
+      <div className="columns is-multiline is-centered" id="link-flexbox">
+        {
+          page.comments && page.comments.map((commenting, index) => {
+            return <div key={index} className="media">
+              <div className="media-content">
+                <div className="content">
+                  <p className="subtitle">
+                    {commenting.content}
+                  </p>
+                  <div>
+                    <Moment format="YYYY/MM/DD">
+                      {commenting.updated_at}
+                    </Moment>
+
+                  </div>
+
+                </div>
+
+                <div className="media-right">
+                  <button
+                    className="button is-danger"
+                    onClick={() => handleDeleteComment(commenting.id)}>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+
+
+
+          })
+        }
+
+
+        {<article className="media">
+          <div className="media-content">
+            <div className="field" >
+              <p className="control">
+
+
+                <textarea
+                  className="textarea"
+                  placeholder="Share your comment..."
+                  onChange={event => setContent(event.target.value)}
+                  value={content}
+                >
+                  {content}
+                </textarea>
+              </p>
+            </div>
+            <div className="field">
+              <p className="control">
+                {<button
+                  onClick={handleComment}
+                  className="button is-info"
+                >
+                  Submit
+                  </button>}
+
+              </p>
+            </div>
+          </div>
+        </article>}
+
+      </div>
+
+
+
+    </div>
+ 
+
   </div>
 
 }
+
+
+
+

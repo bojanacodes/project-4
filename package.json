@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode=development",
+    "start-dev": "webpack-dev-server --mode=development",
     "seed": "pipenv run python server/seed.py",
-    "build": "pipenv install; npm i; webpack -p"
+    "build": "pipenv install; npm i; webpack -p",
+    "start": "pipenv run flask run"
   },
   "author": "",
   "license": "ISC",
@@ -29,8 +30,10 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bulma": "^0.9.2",
+    "moment": "^2.29.1",
     "react": "^16.14.0",
     "react-dom": "^16.13.1",
+    "react-moment": "^1.1.1",
     "react-router-dom": "^5.2.0",
     "react-select": "^4.2.1",
     "react-slick": "^0.28.1"

@@ -5,6 +5,8 @@
 }
 .navbar {
   background-color: #7AA5D2;
+ 
+
 }
 
 // home component
@@ -62,13 +64,22 @@ justify-content: space-between;
   width: 20%;
 }
 
-#right-side-folder-layout {
+#middle-side-folder-layout {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   margin: 10px 0px 0px 10px;
-  width: 80%;
+  width: 60%;
 }
+
+#right-side-folder-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px 0px 0px 10px;
+  width: 20%;
+}
+
 .text-background-folder-name {
   background-color: #7AD1C4;
 }
@@ -77,6 +88,13 @@ justify-content: space-between;
 
 }
 
+#button-add-link {
+  background-color: #8A7AD1;
+  padding: 20px;
+}
+#link-wrapper{
+padding: 10px;
+}
 #loader-folder-overview{
   width: 50px;
   // position: relative;
@@ -89,6 +107,10 @@ flex-direction: row;
 justify-content: space-between;
 }
 
+#add-link {
+  width: 30px;
+  margin: 2px 5px 2px 5px;
+}
 //!general styling rules
 .card:hover {
   color:#D0DFEF;
@@ -164,5 +186,21 @@ justify-content: center;
 
 //! update page
 #folder-delete-button {
-  margin: 10px 0px 40px 25px;
+  margin: 10px 0px 40px 55px;
+}
+
+//! view link
+.container {
+  padding: 30px;
+ 
+}
+
+#textbox-link-overview {
+  padding: 40px;
+}
+
+#link-flexbox {
+
+  display: flex;
+  flex-direction: column;
 }

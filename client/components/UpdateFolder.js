@@ -119,7 +119,7 @@ export default function UpdateFolder({ history, match }) {
 
       <article className="panel" id="panel-update-folder">
       <h3 className="title is-3 panel-heading" id="h3-update-folder">Update your folder</h3>
-
+   
         <FolderForm
           handleChange={handleChange}
           handleSubmit={handleSubmit}
