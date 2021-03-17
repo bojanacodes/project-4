@@ -2,10 +2,7 @@ from flask import Blueprint, request, g
 from models.tag import Tag
 from models.folder import Folder
 from models.link import Link
-<<<<<<< HEAD
 # from models.links_tag import Links_tag_join
-=======
->>>>>>> development
 from serializers.tag import TagSchema
 from serializers.link import LinkSchema
 from decorators.secure_route import secure_route
@@ -51,31 +48,11 @@ def get_tags(folder_id):
 
 
 
-<<<<<<< HEAD
-#! get all links in a particular folder with a particular tag
-=======
 
 
 
 
 #! get particular tag and links associated with it
-
-# @router.route("/folders/<int:folder_id>/tags/<int:tag_id>", methods=["GET"])
-# @secure_route
-# def get_tag(tag_id, folder_id):
-   
-
-#     for item in g.current_user.folders:
-
-#         if item.id == folder_id:
-#             tag = Tag.query.get(tag_id)
-#             return tag_schema.jsonify(tag), 200
-
-#         if not tag:
-#             return {"message": "Tag not found"}, 404
-
-#     return {'errors': 'This is not your folder!'}, 401
->>>>>>> development
 
 @router.route("/folders/<int:folder_id>/tags/<int:tag_id>", methods=["GET"])
 @secure_route

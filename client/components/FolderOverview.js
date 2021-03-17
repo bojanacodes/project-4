@@ -11,6 +11,8 @@ export default function FolderOverview({ history, match }) {
   const [links, updateLinks] = useState([])
   const [folderName, updateFolderName] = useState([])
   const [loading, updateLoading] = useState(true)
+  const [tagsNames, updateTagsNames] = useState([])
+  const [loadingTags, updateLoadingTags] = useState(true)
 
 
   const loggedIn = getLoggedInUserId()
@@ -59,8 +61,48 @@ export default function FolderOverview({ history, match }) {
 
     }
     fetchFolderName()
+
+
+
+
+
+
   }, [])
+
+
+
+  useEffect(() => {
+    async function fetchTagsNames() {
+
+
+      try {
+        const { data } = await axios.get(`/api/folders/${folderId}/tags`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        if (data) {
+          console.log('names of the tags')
+          console.log(data)
+          updateTagsNames(data)
+          updateLoadingTags(false)
+          console.log(data)
+
+
+
+        }
+      } catch (err) {
+        console.log(err)
+      }
+
+    }
+    fetchTagsNames()
+  }, [])
+
   if (loading) {
+    return <div className='loading'>
+      <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-folder-overview" />
+    </div>
+  }
+  if (loadingTags) {
     return <div className='loading'>
       <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-folder-overview" />
     </div>
@@ -81,9 +123,11 @@ export default function FolderOverview({ history, match }) {
             <li>
               <a className="text-background-folder-name">{folderName}</a>
               <ul>
-                <li><a>Members</a></li>
-                <li><a>Plugins</a></li>
-                <li><a>Add a member</a></li>
+                {tagsNames.map((tag, index) => {
+                  return <span key={index}>
+                    <li><a>{tag.name}</a></li>
+                  </span>
+                })}
               </ul>
             </li>
 
@@ -115,7 +159,7 @@ export default function FolderOverview({ history, match }) {
                     </div>
                     <div id="comments">
                       Importance: <strong> {link.importance}</strong>
-                     
+
                     </div>
 
                   </div>
