@@ -39,18 +39,39 @@
 }
 
 #cards-workspace:hover{
-  background-color: #BDD2E8;
+  background-color: #305D8D;
 }
 #cards-workspace{
-  background-color: #F6F9FC;
+  background-color: #2A527B;
 }
 #cards-new-folder {
   background-color: #8A7AD1;
 }
+#cards-new-folder:hover {
+  background-color: #A397DB;
+}
+
 #workspace-card-flexbox {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+#workspace-cards-text {
+  color: #F6F9FC;
+}
+
+#workspace-button {
+  margin: 2px;
+  padding: 3px;
+  background-color: #ECF2F8;
+  color: #24466A;
+  font-size: 12px;
+}
+
+#workspace-buttons-flexbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
 }
 // #cards-workspace:hover{
 //   background-color: #7AD1C4;
@@ -90,7 +111,10 @@ justify-content: space-between;
 }
 
 .text-background-folder-name {
-  background-color: #7AD1C4;
+  background-color: #2A527B;
+  color: #ECF2F8;
+  padding: 20px;
+  font-size: 30px;
 }
 .is-active {
   color: #7AD1C4;
@@ -100,6 +124,11 @@ justify-content: space-between;
 #button-add-link {
   background-color: #8A7AD1;
   padding: 30px;
+  margin-top: 80px;
+}
+#button-add-link:hover {
+  background-color: #A397DB;
+ 
 }
 #link-wrapper{
 padding: 10px;
@@ -115,11 +144,20 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 }
+#folder-overview-link-cards:hover {
+ background-color: #D0DFEF;
+  }
 
 #add-link {
   width: 30px;
   margin: 2px 5px 2px 5px;
 }
+
+#link-card-text {
+  color: #305D8D;
+}
+
+
 //!general styling rules
 .card:hover {
   color:#D0DFEF;
@@ -240,4 +278,20 @@ justify-content: center;
 }
 #main-comment-box {
   padding: 10px;
+}
+
+.fas.fa-home {
+  color: magenta;
+}
+.breadcrumb ul{ 
+  margin-top:24px; 
+  margin-left: 20px;
+ 
+} 
+#breadcrumb-font {
+  color: #24466A;
+}
+
+#breadcrumb-font:hover {
+  color: #3C74B0;
 }

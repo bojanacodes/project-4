@@ -72,7 +72,7 @@ export default function Comments({ linkId, folderId }) {
                       {commenting.content}
                     </p>
                     <div>
-                      <Moment format="YYYY/MM/DD">
+                      <Moment format="DD/MM/YYYY">
                         {commenting.updated_at}
                       </Moment>
 

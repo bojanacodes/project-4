@@ -54,13 +54,13 @@ export default function Workspace() {
                 <div className="card-content">
                   <div className="media">
                     <div className="media-content" id="workspace-card-flexbox">
-                      <p className="title is-4">{folder.name}</p>
-                      <span>
-                        {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="reg-log-button">
-                          Edit
+                      <p className="title is-4" id="workspace-cards-text">{folder.name}</p>
+                      <span id="workspace-buttons-flexbox">
+                        {<Link to={`/folders/edit-folder/${folder.id}`} className="button" id="workspace-button">
+                          Edit 
                         </Link>}
-                        {<Link to={`/folders/${folder.id}/links/new-link`} className="button">
-                        Add link
+                        {<Link to={`/folders/${folder.id}/links/new-link`} className="button" id="workspace-button">
+                        Add a link
                         </Link>}
                       </span>
                     </div>
