@@ -10,10 +10,10 @@ export default function CreateLink({ match, history }) {
   const [formData, updateFormData] = useState({
     name: '',
     description: '',
-    URL: '',
+    url: '',
     image: '',
-    tags: []
-    //importance: ''
+    tags: [],
+    importance: ''
   })
 
   const token = localStorage.getItem('token')
@@ -63,7 +63,25 @@ export default function CreateLink({ match, history }) {
     })
   }
 
-  async function handleSubmit(event) {
+  async function handleSubmitTags(tags, linkId) {
+    // event.preventDefault() - add in as param in line above
+
+    tags.forEach(item => {
+      try {
+        const { data } = axios.post(`/api/folders/${folderId}/links/${linkId}/tags`, { 'name': item.value }, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+          .then(data => {
+            console.log('data after posting tags to newly created link', data)
+          })
+      } catch (err) {
+        console.log(err.response.data)
+      }
+    })
+
+  }
+
+  async function handleSubmitFields(event) {
     event.preventDefault()
 
 
@@ -76,21 +94,14 @@ export default function CreateLink({ match, history }) {
 
     const newTags = newFormData.tags.filter(item => item.__isNew__ === true)
 
-    console.log('new tags', newTags)
+    const tags = newFormData.tags
 
     if (newTags.length > 0) {
       handleNewTagsSubmit(newTags)
     }
 
-    const newFormDataToPost = {
-      ...newFormData,
-      tags: newFormData.tags.map(tag => tag.value)
-    //   tags: newFormData.tags.map(tag => {
-    //     return {
-    //       'name': tag.value
-    //     }
-    //   })
-    }
+  
+    const newFormDataToPost = { 'name': newFormData.name, 'description': newFormData.description, 'url': newFormData.URL, 'image': newFormData.image } 
 
     //tags: formData.tags.map(type => type.value)
 
@@ -100,25 +111,43 @@ export default function CreateLink({ match, history }) {
       const { data } = await axios.post(`/api/folders/${folderId}/links`, newFormDataToPost, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log('data id', data._id)
-      // history.push(`/folders/${folderId}/links/${data._id}`)
-      history.push(`/folders/${folderId}/links`)
+      console.log('data', data)
+      const linkId = data.id
+
+      if (tags.length > 0) {
+        handleSubmitTags(tags, linkId)
+      }
+      //! Check if above should be data._id
+      history.push(`/folders/${folderId}/links/${linkId}`)
+      // history.push(`/folders/${folderId}/links`)
+
     } catch (err) {
       console.log(err.response.data)
     }
+    
+
   }
 
+  
 
 
-
-  //!Check how handleTagChange works
-
-  //! Add tagsData to pass 
   return <LinkForm
     handleChange={handleChange}
     handleTagChange={(tags) => updateFormData({ ...formData, tags })}
-    handleSubmit={handleSubmit}
+    handleSubmitFields={handleSubmitFields}
+    handleRadioChange={handleChange}
     formData={formData}
     tagsData={tagsData}
   />
 }
+
+
+// const newFormDataToPost = {
+    //   ...newFormData,
+    //   tags: newFormData.tags.map(tag => tag.value)
+    //   tags: newFormData.tags.map(tag => {
+    //     return {
+    //       'name': tag.value
+    //     }
+    //   })
+    // }

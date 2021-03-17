@@ -74,11 +74,13 @@ def get_single_link(folder_id, link_id):
 @router.route("/folders/<int:folder_id>/links", methods=["POST"])
 @secure_route
 def make_link(folder_id):
-    print('request json in post link controller', request.json)
+    
     link_dictionary = request.json
   
     try:
+        
         link = link_schema.load(link_dictionary)
+        print('link in link controller', link)
     except ValidationError as e:
         return { 'errors': e.messages, 'messages': 'Something went wrong' }
 

@@ -74,6 +74,42 @@ def get_tag(tag_id, folder_id):
 
     return {'errors': 'This is not your folder!'}, 401
 
+@router.route("/folders/<int:folder_id>/links/<int:link_id>/tags", methods=["POST"])
+@secure_route
+def post_tags_to_link(folder_id, link_id):
+    
+    tag_dictionary = request.json
+    print('tag dictionary', tag_dictionary)
+
+    tag = Tag.query.filter_by(name=tag_dictionary['name']).first()
+
+
+
+    # folder = Folder.query.get(folder_id)
+
+    try:
+        for item in g.current_user.folders:
+
+            if item.id == folder_id:
+
+                link = Link.query.get(link_id)
+                print('link in tags controller', link)
+
+                print('link in post tags to link', link)
+                print('item', item)
+                
+                link.tags.append(tag)
+                link.save()
+                print('link tags', link.tags)
+
+        # ! Check if this is what should be returned
+                
+        return link_schema.jsonify(link), 200
+
+    except ValidationError as e:
+        return {"errors": e.messages, "messages": "Something went wrong"}
+
+    return {'errors': 'This is not your folder!'}, 401
     
 @router.route("/folders/<int:folder_id>/tags", methods=["POST"])
 @secure_route

@@ -92,14 +92,13 @@ def update_folder(folder_id):
 def add_user_to_folder(folder_id):
 
     existing_folder = Folder.query.get(folder_id)
-    print('existing folder', existing_folder)
+    # print('existing folder', existing_folder)
 
     new_user_email = request.json.get('email')
 
-
     new_user = User.query.filter_by(email=new_user_email).first()
 
-    print('new user', new_user)
+    # print('new user', new_user)
     
 
     if not new_user:
@@ -108,12 +107,12 @@ def add_user_to_folder(folder_id):
     try:
         for item in g.current_user.folders:
             if item.id == existing_folder.id:
-                print('folder users 1', existing_folder.users)
+                # print('folder users 1', existing_folder.users)
                 
-                print('new user', new_user)
+                # print('new user', new_user)
                
                 existing_folder.users.append(new_user)
-                print('folder usrs 2', existing_folder.users)
+                # print('folder usrs 2', existing_folder.users)
 
                 existing_folder.save()
 

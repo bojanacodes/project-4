@@ -6,13 +6,12 @@ import CreatableSelect from 'react-select/creatable';
 
 const inputFields = ['name', 'description', 'URL', 'image']
 
-// ! Add comments as separate component
 
 //! Add on change function to handle importance radio button selection
 
 
 
-export default function LinkForm({ formData, handleSubmit, handleChange, handleTagChange, tagsData }) {
+export default function LinkForm({ formData, handleSubmitFields, handleChange, handleTagChange, tagsData }) {
 
 
 
@@ -20,7 +19,7 @@ export default function LinkForm({ formData, handleSubmit, handleChange, handleT
 
     <div className="container">
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmitFields}>
 
         {inputFields.map(field => {
           return <div key={field} className="field">
@@ -56,23 +55,23 @@ export default function LinkForm({ formData, handleSubmit, handleChange, handleT
         />
 
 
-        {/* <label className="label">
+        <label className="label">
           {'Importance'}
         </label>
         <div className="control">
           <label className="radio">
-            <input type="radio" name="answer" onChange={handleChange}/>
+            <input type="radio" name="importance" onChange={handleChange}/>
               High
           </label>
           <label className="radio">
-            <input type="radio" name="answer" onChange={handleChange}/>
+            <input type="radio" name="importance" onChange={handleChange}/>
                 Medium
           </label>
           <label className="radio">
-            <input type="radio" name="answer" onChange={handleChange}/>
+            <input type="radio" name="importance" onChange={handleChange}/>
                 Low
           </label>
-        </div> */}
+        </div>
 
 
         <button className="button mt-5 is-success">Submit</button>

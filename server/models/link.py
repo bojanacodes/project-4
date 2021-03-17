@@ -10,7 +10,7 @@ class Link(db.Model, BaseModel):
     description = db.Column(db.Text, nullable=True)
     url = db.Column(db.Text, nullable=False)
     image = db.Column(db.Text, nullable=True)
-    importance = db.Column(db.String(40), nullable=False)
+    importance = db.Column(db.String(40), nullable=True)
 
 
     # Foreign keys
