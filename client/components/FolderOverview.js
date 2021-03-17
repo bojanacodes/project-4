@@ -100,19 +100,46 @@ export default function FolderOverview({ history, match }) {
       updateLinks(filteredLinks)
 
     }
-
-
   }
 
   console.log('filtered tags', filteredTags)
 
+  function sortLinks() {
+
+    const sortedArray = []
+
+    //!check if should be small h in High
+    permanentData.filter(item => {
+      if (item.importance === 'High') {
+        sortedArray.push(item)
+      }
+    })
+
+    permanentData.filter(item => {
+      if (item.importance === 'Medium') {
+        sortedArray.push(item)
+      }
+    })
+
+    permanentData.filter(item => {
+      if (item.importance === 'Low') {
+        sortedArray.push(item)
+      }
+    })
+
+    permanentData.filter(item => {
+      if (item.importance === '') {
+        sortedArray.push(item)
+      }
+    })
+
+    updateLinks(sortedArray)
+
+  }
 
 
 
-  // function filteringData(tag) {
-  //   updateFilteredStateChange(tag)
-  //   fetchData()
-  // }
+
 
   if (loading) {
     return <div className='loading'>
@@ -160,6 +187,11 @@ export default function FolderOverview({ history, match }) {
 
 
     <section id="right-side-folder-layout">
+
+      <div className="title is-2">{folderName} links</div>
+      <div className="button" onClick={sortLinks}>Sort by importance</div>
+      <div className="button" onClick={() => filteringData('All')}>Sort by date added</div>
+
 
       {links.map((link, index) => {
         return <div key={index} className="column is-four-fifths-desktop is-four-fifths-tablet is-half-mobile">
