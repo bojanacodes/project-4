@@ -60,15 +60,15 @@ export default function LinkForm({ formData, handleSubmitFields, handleChange, h
         </label>
         <div className="control">
           <label className="radio">
-            <input type="radio" name="importance" onChange={handleChange}/>
+            <input type="radio" name="importance" value="High" onChange={handleChange}/>
               High
           </label>
           <label className="radio">
-            <input type="radio" name="importance" onChange={handleChange}/>
+            <input type="radio" name="importance" value="Medium" onChange={handleChange}/>
                 Medium
           </label>
           <label className="radio">
-            <input type="radio" name="importance" onChange={handleChange}/>
+            <input type="radio" name="importance" value="Low" onChange={handleChange}/>
                 Low
           </label>
         </div>

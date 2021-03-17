@@ -31,7 +31,7 @@ export default function CreateLink({ match, history }) {
 
         data.map(item => tagNames.push({ 'label': item.name, 'value': item.name }))
 
-        console.log('tag names', tagNames)
+        // console.log('tag names', tagNames)
 
         updateTagsData(tagNames)
 
@@ -43,7 +43,8 @@ export default function CreateLink({ match, history }) {
   }, [])
 
   function handleChange(event) {
-
+    console.log('handle change event', event.target.name, event.target.value)
+    
     updateFormData({ ...formData, [event.target.name]: event.target.value })
   }
 
@@ -101,9 +102,8 @@ export default function CreateLink({ match, history }) {
     }
 
   
-    const newFormDataToPost = { 'name': newFormData.name, 'description': newFormData.description, 'url': newFormData.URL, 'image': newFormData.image } 
+    const newFormDataToPost = { 'name': newFormData.name, 'description': newFormData.description, 'url': newFormData.URL, 'image': newFormData.image, 'importance': newFormData.importance } 
 
-    //tags: formData.tags.map(type => type.value)
 
     console.log('newformdatatopost', newFormDataToPost)
 
