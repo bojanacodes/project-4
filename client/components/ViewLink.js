@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Comments from './Comments.js'
 
 export default function ViewLink({ match, history }) {
   const linkId = match.params.linkId
@@ -65,8 +66,9 @@ export default function ViewLink({ match, history }) {
 
 
             </h2>
-
-
+ 
+            <Comments linkId={linkId} folderId={folderId}
+            />
 
           </div>
         </section>

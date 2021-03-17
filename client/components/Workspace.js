@@ -38,9 +38,9 @@ export default function Workspace() {
     </div>
   }
 
-  return <div>
+  return <div id="main-workspace-flexbox">
 
-    <h1 className="title is=one" id="tille-workspace">Welcome to your workspace</h1>
+    <h1 className="title is-one" id="title-workspace">Welcome to your workspace</h1>
 
 
 
@@ -76,7 +76,7 @@ export default function Workspace() {
               <div className="card-content">
                 <div className="media">
                   <div className="media-content">
-                    <p className="title is-4">Add a new folder</p>
+                  <p className="title is-4">Add a new folder</p> <img src='https://image.flaticon.com/icons/png/128/1828/1828926.png' id="add-link"/>
                   </div>
                 </div>
               </div>

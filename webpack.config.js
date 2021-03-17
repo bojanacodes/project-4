@@ -45,7 +45,8 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: 'client/index.html',
         filename: 'index.html',
-        inject: 'body'
+        inject: 'body',
+        favicon: 'https://res.cloudinary.com/dm4usld2h/image/upload/v1616010968/favicon_okwqkj.png'
       }),
       env
     ]

@@ -4,7 +4,7 @@ import axios from 'axios'
 import { getLoggedInUserId } from '../lib/auth'
 import Moment from 'react-moment'
 
-export default function Comments({ }) {
+export default function Comments({ linkId, folderId }) {
   // const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [page, updatePage] = useState({})
@@ -16,7 +16,7 @@ export default function Comments({ }) {
   useEffect(() => {
     async function fetchCommentData() {
       try {
-        const { data } = await axios.get('/api/folders/1/links/1', {
+        const { data } = await axios.get(`/api/folders/${folderId}/links/${linkId}`, {
           headers: { Authorization: `Bearer ${token}` }
         }
 
@@ -33,7 +33,7 @@ export default function Comments({ }) {
 
 
   async function handleComment() {
-    const { data } = await axios.post('/api/folders/1/links/1/comments', { content }, {
+    const { data } = await axios.post(`/api/folders/${folderId}/links/${linkId}/comments`, { content }, {
       headers: { Authorization: `Bearer ${token}` }
     })
 
@@ -46,92 +46,94 @@ export default function Comments({ }) {
     if (!isCreator) {
       return null
     }
-    await axios.delete(`/api/folders/1/links/1/comments/${commentId}`, {
+    await axios.delete(`/api/folders/${folderId}/links/${linkId}/comments/${commentId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
 
         console.log(resp.data)
-       
+
       })
   }
 
 
   return <div>
-    <div className="container is-centered">
-      <h2 className="title is-2">Share you opinions</h2>
+    <div className="container is-centered" id="main-comment-box">
+      <article className="panel" id="panel-update-folder">
+        <h4 className="title is-4 panel-heading" id="comment-title">Share you what you think</h4>
 
-      <div className="columns is-multiline is-centered" id="link-flexbox">
-        {
-          page.comments && page.comments.map((commenting, index) => {
-            return <div key={index} className="media">
-              <div className="media-content">
-                <div className="content">
-                  <p className="subtitle">
-                    {commenting.content}
-                  </p>
-                  <div>
-                    <Moment format="YYYY/MM/DD">
-                      {commenting.updated_at}
-                    </Moment>
+        <div className="columns is-multiline is-centered" id="link-flexbox">
+          {
+            page.comments && page.comments.map((commenting, index) => {
+              return <div key={index} className="media" >
+                <div className="media-content" id="inside-comment-panel">
+                  <div className="content">
+                    <p className="subtitle">
+                      {commenting.content}
+                    </p>
+                    <div>
+                      <Moment format="YYYY/MM/DD">
+                        {commenting.updated_at}
+                      </Moment>
+
+                    </div>
 
                   </div>
 
-                </div>
-
-                <div className="media-right">
-                  <button
-                    className="button is-danger"
-                    onClick={() => handleDeleteComment(commenting.id)}>
-                    Delete
-                  </button>
+                  <div className="media-right">
+                    <button
+                      className="button is-danger"
+                      onClick={() => handleDeleteComment(commenting.id)}>
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            
 
 
 
-          })
-        }
+
+            })
+          }
 
 
-        {<article className="media">
-          <div className="media-content">
-            <div className="field" >
-              <p className="control">
+          {<article className="media" id="submit-comment">
+            <div className="media-content">
+              <div className="field" >
+                <p className="control">
 
 
-                <textarea
-                  className="textarea"
-                  placeholder="Share your comment..."
-                  onChange={event => setContent(event.target.value)}
-                  value={content}
-                >
-                  {content}
-                </textarea>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                {<button
-                  onClick={handleComment}
-                  className="button is-info"
-                >
-                  Submit
+                  <textarea
+                    className="textarea"
+                    placeholder="Share your comment..."
+                    onChange={event => setContent(event.target.value)}
+                    value={content}
+                  >
+                    {content}
+                  </textarea>
+                </p>
+              </div>
+              <div className="field">
+                <p className="control">
+                  {<button
+                    onClick={handleComment}
+                    className="button is-info"
+
+                  >
+                    Submit
                   </button>}
 
-              </p>
+                </p>
+              </div>
             </div>
-          </div>
-        </article>}
+          </article>}
 
-      </div>
+        </div>
 
-
+      </article>
 
     </div>
- 
+
 
   </div>
 
