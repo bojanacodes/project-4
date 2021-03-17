@@ -48,7 +48,7 @@ export default function ViewLink({ match, history }) {
           <Link to={{ pathname: `${linkData.url}` }} target="_blank"><h3 className="title is-3 panel-heading" id="h3-update-folder">{linkData.name}</h3></Link>
           <div id="textbox-link-overview">
             <h2 className="subtitle"> <strong>Description: </strong>{linkData.description}</h2>
-
+         
             {/* Add image link */}
 
             <h2 className="subtitle"><strong>Importance: </strong>{linkData.importance}</h2>
@@ -58,7 +58,7 @@ export default function ViewLink({ match, history }) {
 
               {linkDataTags.map((tag, index) => {
                 return <span key={index}>
-                  <a>{tag.name}, </a>
+                  <button className="button">{tag.name} </button>
                 </span>
               })}
 

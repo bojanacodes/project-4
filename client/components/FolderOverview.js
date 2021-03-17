@@ -141,7 +141,7 @@ export default function FolderOverview({ history, match }) {
 
 
 
-    <section id="right-side-folder-layout">
+    <section id="middle-side-folder-layout">
 
       {links.map((link, index) => {
         return <div key={index} className="column is-four-fifths-desktop is-four-fifths-tablet is-half-mobile">
@@ -176,6 +176,15 @@ export default function FolderOverview({ history, match }) {
 
 
     </section>
+
+    <section id="right-side-folder-layout">
+      <div id="link-wrapper">
+        {<Link to={`/folders/${folderId}/links/new-link`} className="button" id="button-add-link">
+          <img src='https://image.flaticon.com/icons/png/128/1828/1828926.png' id="add-link"></img> <p>   Add link</p>
+        </Link>}
+      </div>
+    </section>
+
   </div>
 
 }
