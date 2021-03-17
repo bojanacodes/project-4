@@ -9,6 +9,8 @@ export default function Workspace() {
   const loggedIn = getLoggedInUserId()
   const token = localStorage.getItem('token')
   const [loading, updateLoading] = useState(true)
+
+  
   useEffect(() => {
     async function getFolderData() {
       if (loggedIn) {

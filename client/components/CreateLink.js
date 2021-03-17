@@ -43,8 +43,8 @@ export default function CreateLink({ match, history }) {
   }, [])
 
   function handleChange(event) {
-    console.log('handle change event', event.target.name, event.target.value)
-    
+    // console.log('handle change event', event.target.name, event.target.value)
+
     updateFormData({ ...formData, [event.target.name]: event.target.value })
   }
 
@@ -82,6 +82,27 @@ export default function CreateLink({ match, history }) {
 
   }
 
+  //!! Testing - get image
+
+
+  // function getImage(newFormDataToPost) {
+  //   console.log("in the get image function")
+  //   console.log('form data url', newFormDataToPost.url)
+  //   try {
+  //     const { data } = axios.get(`${newFormDataToPost.url}`)
+  //       .then(data => {
+  //         console.log('data from url get', data)
+  //       })
+
+
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+
+
+
+
   async function handleSubmitFields(event) {
     event.preventDefault()
 
@@ -91,7 +112,7 @@ export default function CreateLink({ match, history }) {
       //tags: formData.tags.map(type => type.value)
     }
 
-    console.log('new form data', newFormData)
+    // console.log('new form data', newFormData)
 
     const newTags = newFormData.tags.filter(item => item.__isNew__ === true)
 
@@ -101,34 +122,37 @@ export default function CreateLink({ match, history }) {
       handleNewTagsSubmit(newTags)
     }
 
-  
-    const newFormDataToPost = { 'name': newFormData.name, 'description': newFormData.description, 'url': newFormData.URL, 'image': newFormData.image, 'importance': newFormData.importance } 
+
+    const newFormDataToPost = { 'name': newFormData.name, 'description': newFormData.description, 'url': newFormData.URL, 'image': newFormData.image, 'importance': newFormData.importance }
 
 
-    console.log('newformdatatopost', newFormDataToPost)
+    // console.log('newformdatatopost', newFormDataToPost)
 
     try {
       const { data } = await axios.post(`/api/folders/${folderId}/links`, newFormDataToPost, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log('data', data)
+      // console.log('data', data)
       const linkId = data.id
 
       if (tags.length > 0) {
         handleSubmitTags(tags, linkId)
       }
-      //! Check if above should be data._id
+
+      // getImage(newFormDataToPost)
+
+   
       history.push(`/folders/${folderId}/links/${linkId}`)
       // history.push(`/folders/${folderId}/links`)
 
     } catch (err) {
       console.log(err.response.data)
     }
-    
+
 
   }
 
-  
+
 
 
   return <LinkForm
@@ -142,12 +166,3 @@ export default function CreateLink({ match, history }) {
 }
 
 
-// const newFormDataToPost = {
-    //   ...newFormData,
-    //   tags: newFormData.tags.map(tag => tag.value)
-    //   tags: newFormData.tags.map(tag => {
-    //     return {
-    //       'name': tag.value
-    //     }
-    //   })
-    // }
