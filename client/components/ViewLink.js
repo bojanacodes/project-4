@@ -24,7 +24,12 @@ export default function ViewLink({ match, history }) {
   }, [])
 
   return <div className="columns">
+
+
+
     <div className="column">
+    <Link to={`/folders/${folderId}/links/${linkId}/edit`}><h1 className="button">Edit link</h1></Link>
+
       <Link to={{ pathname: `${linkData.url}` }} target="_blank"><h1 className="title">{linkData.name}</h1></Link>
       <h2 className="subtitle">{`Description: ${linkData.description}`}</h2>
 

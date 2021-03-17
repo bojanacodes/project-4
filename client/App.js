@@ -18,6 +18,7 @@ import UserProfile from './components/UserProfile'
 import CreateLink from './components/CreateLink'
 import FolderOverview from './components/FolderOverview'
 import ViewLink from './components/ViewLink'
+import UpdateLink from './components/UpdateLink'
 import Comments from './components/Comments'
 
 import UpdateFolder from './components/UpdateFolder'
@@ -38,6 +39,7 @@ const App = () => (
       <Route exact path="/folders/:folderId/links/new-link" component={CreateLink} />
       <Route exact path="/folders/:folderId" component={FolderOverview} />
       <Route exact path="/folders/:folderId/links/:linkId" component={ViewLink} />
+      <Route exact path="/folders/:folderId/links/:linkId/edit" component={UpdateLink} />
 
       <Route exact path="/test-comments" component={Comments} />
     </Switch>
