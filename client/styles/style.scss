@@ -45,7 +45,7 @@
 //   background-color: #7AD1C4;
 // }
 
-//Folderoverview
+//! Folderoverview
 #folder-overview-flexbox {
 display: flex;
 flex-direction: row;
@@ -83,6 +83,11 @@ justify-content: space-between;
   // align-self: center;
 }
 
+#folder-overview-card {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
 
 //!general styling rules
 .card:hover {
@@ -143,7 +148,7 @@ background-color: #D9E5F2;
   
 }
 
-//login
+//! login
 #login-form {
   width: 40%;
 }
@@ -152,12 +157,12 @@ background-color: #D9E5F2;
 display: flex;
 justify-content: center;
 }
-//registration
+//! registration
 #registration-form {
   width: 40%;
 }
 
-//update page
+//! update page
 #folder-delete-button {
   margin: 10px 0px 40px 25px;
 }
