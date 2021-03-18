@@ -141,7 +141,7 @@ export default function CreateLink({ match, history }) {
 
       // getImage(newFormDataToPost)
 
-   
+
       history.push(`/folders/${folderId}/links/${linkId}`)
       // history.push(`/folders/${folderId}/links`)
 
@@ -155,14 +155,18 @@ export default function CreateLink({ match, history }) {
 
 
 
-  return <LinkForm
-    handleChange={handleChange}
-    handleTagChange={(tags) => updateFormData({ ...formData, tags })}
-    handleSubmitFields={handleSubmitFields}
-    handleRadioChange={handleChange}
-    formData={formData}
-    tagsData={tagsData}
-  />
+  return <div>
+
+    <LinkForm
+      handleChange={handleChange}
+      handleTagChange={(tags) => updateFormData({ ...formData, tags })}
+      handleSubmitFields={handleSubmitFields}
+      handleRadioChange={handleChange}
+      formData={formData}
+      tagsData={tagsData}
+    />
+
+  </div>
 }
 
 

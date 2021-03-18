@@ -137,7 +137,7 @@ export default function UpdatePokemon({ history, match }) {
 
       // getImage(newFormDataToPost)
 
-   
+
       history.push(`/folders/${folderId}/links/${linkId}`)
       // history.push(`/folders/${folderId}/links`)
 
@@ -148,12 +148,17 @@ export default function UpdatePokemon({ history, match }) {
 
   }
 
-  return <LinkForm
-    handleChange={handleChange}
-    handleTagChange={(tags) => updateFormData({ ...formData, tags })}
-    handleSubmitFields={handleSubmitFields}
-    handleRadioChange={handleChange}
-    formData={formData}
-    tagsData={tagsData}
-  />
+  return <div>
+    <div className="columns is-multiline is-mobile is-centered">
+      <h2 className="title is-3"> Update your link</h2>
+      <LinkForm
+        handleChange={handleChange}
+        handleTagChange={(tags) => updateFormData({ ...formData, tags })}
+        handleSubmitFields={handleSubmitFields}
+        handleRadioChange={handleChange}
+        formData={formData}
+        tagsData={tagsData}
+      />
+    </div>
+  </div>
 }
