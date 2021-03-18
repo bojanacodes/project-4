@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import CreatableSelect from 'react-select/creatable';
+import CreatableSelect from 'react-select/creatable'
 
 
-const inputFields = ['name', 'description', 'URL', 'image']
-
-
-//! Add on change function to handle importance radio button selection
-
+const inputFields = ['name', 'description', 'URL']
 
 
 export default function LinkForm({ formData, handleSubmitFields, handleChange, handleTagChange, tagsData }) {

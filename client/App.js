@@ -20,7 +20,7 @@ import FolderOverview from './components/FolderOverview'
 import ViewLink from './components/ViewLink'
 import UpdateLink from './components/UpdateLink'
 import Comments from './components/Comments'
-
+import CreateTag from './components/CreateTag'
 import UpdateFolder from './components/UpdateFolder'
 import CreateFolder from './components/CreateFolder'
 
@@ -29,16 +29,17 @@ const App = () => (
     <Navbar />
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/register" component={Register}/>
-      <Route exact path="/login" component={Login}/>
-      <Route exact path="/workspace" component={Workspace}/>
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/workspace" component={Workspace} />
       <Route exact path="/profile/:userId" component={UserProfile} />
-      <Route exact path="/folders/new-folder" component={CreateFolder}/>
-      <Route exact path="/folders/edit-folder/:folderId" component={UpdateFolder}/>
+      <Route exact path="/folders/new-folder" component={CreateFolder} />
+      <Route exact path="/folders/edit-folder/:folderId" component={UpdateFolder} />
       <Route exact path="/folders/:folderId/links/new-link" component={CreateLink} />
       <Route exact path="/folders/:folderId" component={FolderOverview} />
       <Route exact path="/folders/:folderId/links/:linkId" component={ViewLink} />
       <Route exact path="/folders/:folderId/links/:linkId/edit" component={UpdateLink} />
+      <Route exact path="/folders/:folderId/tags/new-tag" component={CreateTag} />
 
       <Route exact path="/test-comments" component={Comments} />
     </Switch>
