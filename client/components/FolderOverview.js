@@ -218,6 +218,14 @@ export default function FolderOverview({ history, match }) {
               <div onClick={() => filteringData('All')}>Sort by date added</div>
             </a>
           </li>
+          <li>
+            <a href="#" id="breadcrumb-font">
+              {/* <span className="icon is-small"> */}
+              {/* <i className="fas fa-book" aria-hidden="true"></i> */}
+              {/* </span> */}
+              
+            </a>
+          </li>
 
 
         </ul>
@@ -260,6 +268,12 @@ export default function FolderOverview({ history, match }) {
       <div id="link-wrapper">
         {<Link to={`/folders/${folderId}/links/new-link`} className="button" id="button-add-link">
           <img src='https://image.flaticon.com/icons/png/128/1828/1828926.png' id="add-link"></img> <p>   Add link</p>
+        </Link>}
+      </div>
+
+      <div id="link-wrapper">
+        {<Link to={`/folders/${folderId}/tags/new-tag`} className="button" id="button-add-link">
+          <img src='https://image.flaticon.com/icons/png/128/1828/1828926.png' id="add-link"></img> <p>   Add tags</p>
         </Link>}
       </div>
     </section>

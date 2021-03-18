@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import CreatableSelect from 'react-select/creatable';
+import CreatableSelect from 'react-select/creatable'
 
 
 const inputFields = ['name', 'description', 'URL']

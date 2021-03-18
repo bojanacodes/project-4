@@ -142,7 +142,7 @@ export default function CreateLink({ match, history }) {
 
    
       history.push(`/folders/${folderId}/links/${linkId}`)
-      // history.push(`/folders/${folderId}/links`)
+     
 
     } catch (err) {
       console.log(err.response.data)
