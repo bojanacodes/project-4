@@ -142,7 +142,7 @@ export default function CreateLink({ match, history }) {
 
 
       history.push(`/folders/${folderId}/links/${linkId}`)
-     
+
 
     } catch (err) {
       console.log(err.response.data)
@@ -155,16 +155,24 @@ export default function CreateLink({ match, history }) {
 
 
   return <div>
+    <div className="columns is-centered is-two-thirds-desktop">
+      <div className="container is-centered is-two-thirds">
 
-    <LinkForm
-      handleChange={handleChange}
-      handleTagChange={(tags) => updateFormData({ ...formData, tags })}
-      handleSubmitFields={handleSubmitFields}
-      handleRadioChange={handleChange}
-      formData={formData}
-      tagsData={tagsData}
-    />
 
+        <article className="panel" id="panel-update-folder">
+          <h3 className="title is-3 panel-heading" id="h3-link-panel">Create a link</h3>
+
+          <LinkForm
+            handleChange={handleChange}
+            handleTagChange={(tags) => updateFormData({ ...formData, tags })}
+            handleSubmitFields={handleSubmitFields}
+            handleRadioChange={handleChange}
+            formData={formData}
+            tagsData={tagsData}
+          />
+        </article>
+      </div>
+    </div>
   </div>
 }
 

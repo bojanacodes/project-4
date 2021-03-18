@@ -60,7 +60,7 @@ export default function Comments({ linkId, folderId }) {
   return <div>
     <div className="container is-centered" id="main-comment-box">
       <article className="panel" id="panel-update-folder">
-        <h4 className="title is-4 panel-heading" id="comment-title">Share you what you think</h4>
+        <h4 className="title is-4 panel-heading" id="comment-title">Comments</h4>
 
         <div className="columns is-multiline is-centered" id="link-flexbox">
           {

@@ -148,17 +148,25 @@ export default function UpdatePokemon({ history, match }) {
 
   }
 
-  return <div>
-    <div className="columns is-multiline is-mobile is-centered">
-      <h2 className="title is-3"> Update your link</h2>
-      <LinkForm
-        handleChange={handleChange}
-        handleTagChange={(tags) => updateFormData({ ...formData, tags })}
-        handleSubmitFields={handleSubmitFields}
-        handleRadioChange={handleChange}
-        formData={formData}
-        tagsData={tagsData}
-      />
+  return <div >
+    <div className="container is-centered">
+
+      <article className="panel" id="panel-update-folder">
+        <h3 className="title is-3 panel-heading" id="h3-link-panel">Update your link</h3>
+        {/* <div className="columns is-multiline is-mobile is-centered"> */}
+     
+
+        <LinkForm
+          handleChange={handleChange}
+          handleTagChange={(tags) => updateFormData({ ...formData, tags })}
+          handleSubmitFields={handleSubmitFields}
+          handleRadioChange={handleChange}
+          formData={formData}
+          tagsData={tagsData}
+        />
+      </article>
     </div>
   </div>
+
+
 }
