@@ -23,6 +23,7 @@ export default function ViewLink({ match, history }) {
         updateLinkData(data)
         console.log(data.tags)
         updateLinkDataTags(data.tags)
+        console.log('link data tags in use effect', data.tags)
         updateLoading(false)
         // console.log('show me the link data')
         // console.log(linkData)
@@ -66,7 +67,7 @@ export default function ViewLink({ match, history }) {
             <h2 className="subtitle"><strong>Tags: </strong>
 
 
-
+              {console.log('link data tags in return', linkDataTags)}
               {linkDataTags.map((tag, index) => {
                 return <span key={index}>
                   <button className="button">{tag.name} </button>

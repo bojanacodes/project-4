@@ -2,6 +2,7 @@ import { Link, withRouter } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import { getLoggedInUserId } from '../lib/auth'
 import axios from 'axios'
+
 const NavBar = ({ history }) => {
   const [email, updateEmail] = useState('')
   const token = localStorage.getItem('token') 
