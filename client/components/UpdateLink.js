@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import LinkForm from './LinkForm'
 
-export default function UpdatePokemon({ history, match }) {
+export default function UpdateLink({ history, match }) {
 
   const linkId = match.params.linkId
   const folderId = match.params.folderId
@@ -12,9 +12,8 @@ export default function UpdatePokemon({ history, match }) {
     name: '',
     description: '',
     url: '',
-    image: '',
     tags: [],
-    importance: ''
+    // importance: ''
   })
 
   const token = localStorage.getItem('token')
