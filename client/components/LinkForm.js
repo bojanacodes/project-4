@@ -7,10 +7,6 @@ import CreatableSelect from 'react-select/creatable'
 const inputFields = ['name', 'description', 'URL']
 
 
-//! Add on change function to handle importance radio button selection
-
-
-
 export default function LinkForm({ formData, handleSubmitFields, handleChange, handleTagChange, tagsData }) {
 
 

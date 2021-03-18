@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import CreatableSelect from 'react-select/creatable'
+import { withRouter } from 'react-router-dom'
 
 
+const CreateTag = ({ match, history }) => {
+  // export default function CreateTag({ match, history }) {
 
-export default function CreateLink({ match, history }) {
+
+  console.log('loading create tag page')
 
   const folderId = match.params.folderId
 
@@ -13,9 +17,9 @@ export default function CreateLink({ match, history }) {
   // })
 
   const [formData, updateFormData] = useState({
-    
+
     tags: []
-    
+
   })
   const token = localStorage.getItem('token')
 
@@ -53,6 +57,7 @@ export default function CreateLink({ match, history }) {
 
     const newTags = formData.tags.filter(item => item.__isNew__ === true)
 
+    console.log('in your submit')
 
     newTags.forEach(item => {
       try {
@@ -60,7 +65,7 @@ export default function CreateLink({ match, history }) {
           headers: { Authorization: `Bearer ${token}` }
         })
           .then(data => {
-            
+
             console.log('data after posting new tags', data)
           })
       } catch (err) {
@@ -68,9 +73,25 @@ export default function CreateLink({ match, history }) {
       }
     })
 
-    history.push(`/folders/${folderId}`)
+    console.log('above the timeout')
+    // history.push(`/folders/${folderId}`)
+
+    setTimeout(() => {
+      console.log('in your timeout')
+      history.push(`/folders/${folderId}`)
+    }, 3000)
+
+    console.log('after timeout')
+
+    history.push(`/folders/${folderId}/tags/`)
+    
+
 
   }
+
+  //   return <div className='loading'>
+  //   <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-folder-overview" />
+  // </div>
 
   return <div className="section">
 
@@ -98,3 +119,5 @@ export default function CreateLink({ match, history }) {
     </div>
   </div>
 }
+
+export default withRouter(CreateTag)

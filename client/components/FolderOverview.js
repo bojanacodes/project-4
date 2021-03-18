@@ -7,7 +7,7 @@ import { getLoggedInUserId } from '../lib/auth'
 
 export default function FolderOverview({ history, match }) {
   const folderId = match.params.folderId
-  console.log('folderId', folderId)
+  // console.log('folderId', folderId)
   const [links, updateLinks] = useState([])
   const [folderName, updateFolderName] = useState([])
   const [loading, updateLoading] = useState(true)
@@ -38,7 +38,7 @@ export default function FolderOverview({ history, match }) {
         headers: { Authorization: `Bearer ${token}` }
       })
       if (data) {
-        console.log('data.links', data.links)
+        // console.log('data.links', data.links)
         updateLinks(data.links)
         updatePermanentData(data.links)
         updateFolderName(data.name)
@@ -55,7 +55,6 @@ export default function FolderOverview({ history, match }) {
   useEffect(() => {
     async function fetchTagsNames() {
 
-
       try {
         const { data } = await axios.get(`/api/folders/${folderId}/tags`, {
           headers: { Authorization: `Bearer ${token}` }
@@ -65,11 +64,14 @@ export default function FolderOverview({ history, match }) {
           console.log('fetch tags data', data)
           updateTagsNames(data)
           updateLoadingTags(false)
-          console.log('second fetch tags data', data)
+          // console.log('second fetch tags data', data)
         }
       } catch (err) {
         console.log(err)
       }
+
+
+
     }
     fetchTagsNames()
   }, [])
@@ -78,7 +80,7 @@ export default function FolderOverview({ history, match }) {
 
     const tagName = event
 
-    console.log('tagName', tagName)
+    // console.log('tagName', tagName)
 
     // console.log('event.target', event.target)
 
@@ -96,19 +98,19 @@ export default function FolderOverview({ history, match }) {
         })
       })
 
-      console.log('filtered links', filteredLinks)
+      // console.log('filtered links', filteredLinks)
       updateLinks(filteredLinks)
 
     }
   }
 
-  console.log('filtered tags', filteredTags)
+  // console.log('filtered tags', filteredTags)
 
   function sortLinks() {
 
     const sortedArray = []
 
-    console.log('1', links)
+    // console.log('1', links)
 
     links.filter(item => {
       if (item.importance === 'High') {
@@ -116,7 +118,7 @@ export default function FolderOverview({ history, match }) {
       }
     })
 
-    console.log('High', sortedArray)
+    // console.log('High', sortedArray)
 
     links.filter(item => {
       if (item.importance === 'Medium') {
@@ -124,7 +126,7 @@ export default function FolderOverview({ history, match }) {
       }
     })
 
-    console.log('medium', sortedArray)
+    // console.log('medium', sortedArray)
 
     links.filter(item => {
       if (item.importance === 'Low') {
@@ -132,7 +134,7 @@ export default function FolderOverview({ history, match }) {
       }
     })
 
-    console.log('low', sortedArray)
+    // console.log('low', sortedArray)
 
     links.filter(item => {
       if (item.importance === '') {
@@ -140,7 +142,7 @@ export default function FolderOverview({ history, match }) {
       }
     })
 
-    console.log('empty str', sortedArray)
+    // console.log('empty str', sortedArray)
 
     updateLinks(sortedArray)
 
@@ -223,7 +225,7 @@ export default function FolderOverview({ history, match }) {
               {/* <span className="icon is-small"> */}
               {/* <i className="fas fa-book" aria-hidden="true"></i> */}
               {/* </span> */}
-              
+
             </a>
           </li>
 
