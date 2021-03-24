@@ -70,7 +70,7 @@ export default function Workspace() {
             </Link>
           </div>
         })}
-        <div className="column is-one-third-desktop is-half-tablet is-half-mobile">
+        <div className="column">
           <Link to={'/folders/new-folder'}>
             <div className="card" id="cards-new-folder">
               <div className="card-content">
