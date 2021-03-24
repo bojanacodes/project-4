@@ -84,7 +84,7 @@ const CreateTag = ({ match, history }) => {
     console.log('after timeout')
 
     history.push(`/folders/${folderId}/tags/`)
-    
+
 
 
   }
@@ -93,11 +93,12 @@ const CreateTag = ({ match, history }) => {
   //   <img src='https://i.ibb.co/xDS2vQc/loading.gif' id="loader-folder-overview" />
   // </div>
 
-  return <div className="section">
+  return <div className="container is-centered">
 
-    <div className="container">
+    <article className="panel" id="panel-update-folder">
+      <h3 className="title is-3 panel-heading" id="h3-tag-panel">Create a tag</h3>
 
-      <form onSubmit={handleNewTagsSubmit}>
+      <form onSubmit={handleNewTagsSubmit} id="tag-form">
 
         <label className="label">
           View and add tags
@@ -116,8 +117,10 @@ const CreateTag = ({ match, history }) => {
 
         <button className="button mt-5 is-success">Submit</button>
       </form>
-    </div>
-  </div>
+
+
+    </article >
+  </div >
 }
 
 export default withRouter(CreateTag)

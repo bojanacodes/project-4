@@ -11,9 +11,10 @@ export default function LinkForm({ formData, handleSubmitFields, handleChange, h
 
 
 
-  return <div className="section">
+  return <div className="section" id="link-form-section">
 
     <div className="container">
+
 
       <form onSubmit={handleSubmitFields}>
 
@@ -25,7 +26,8 @@ export default function LinkForm({ formData, handleSubmitFields, handleChange, h
             <div className="control">
               <input
                 className="input"
-                type="text"
+                type="textarea"
+                rows="8"
                 value={formData[field]}
                 onChange={handleChange}
                 name={field}
@@ -56,15 +58,15 @@ export default function LinkForm({ formData, handleSubmitFields, handleChange, h
         </label>
         <div className="control">
           <label className="radio">
-            <input type="radio" name="importance" value="High" onChange={handleChange}/>
+            <input type="radio" name="importance" value="High" onChange={handleChange} />
               High
           </label>
           <label className="radio">
-            <input type="radio" name="importance" value="Medium" onChange={handleChange}/>
+            <input type="radio" name="importance" value="Medium" onChange={handleChange} />
                 Medium
           </label>
           <label className="radio">
-            <input type="radio" name="importance" value="Low" onChange={handleChange}/>
+            <input type="radio" name="importance" value="Low" onChange={handleChange} />
                 Low
           </label>
         </div>
@@ -72,9 +74,7 @@ export default function LinkForm({ formData, handleSubmitFields, handleChange, h
 
         <button className="button mt-5 is-success">Submit</button>
       </form>
-
     </div>
 
   </div>
-
 }

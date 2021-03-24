@@ -136,7 +136,7 @@ export default function UpdateLink({ history, match }) {
 
       // getImage(newFormDataToPost)
 
-   
+
       history.push(`/folders/${folderId}/links/${linkId}`)
       // history.push(`/folders/${folderId}/links`)
 
@@ -147,12 +147,25 @@ export default function UpdateLink({ history, match }) {
 
   }
 
-  return <LinkForm
-    handleChange={handleChange}
-    handleTagChange={(tags) => updateFormData({ ...formData, tags })}
-    handleSubmitFields={handleSubmitFields}
-    handleRadioChange={handleChange}
-    formData={formData}
-    tagsData={tagsData}
-  />
+  return <div >
+    <div className="container is-centered">
+
+      <article className="panel" id="panel-update-folder">
+        <h3 className="title is-3 panel-heading" id="h3-link-panel">Update your link</h3>
+        {/* <div className="columns is-multiline is-mobile is-centered"> */}
+     
+
+        <LinkForm
+          handleChange={handleChange}
+          handleTagChange={(tags) => updateFormData({ ...formData, tags })}
+          handleSubmitFields={handleSubmitFields}
+          handleRadioChange={handleChange}
+          formData={formData}
+          tagsData={tagsData}
+        />
+      </article>
+    </div>
+  </div>
+
+
 }

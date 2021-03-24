@@ -244,7 +244,7 @@ export default function FolderOverview({ history, match }) {
                       <h4 className="title is-4">{link.name}</h4>
                       {/* <p className="title is-4">{link.name}</p> */}
                       <span>
-                        {<Link to={`/folders/edit-folder/${link.id}`} className="button" id="reg-log-button">
+                        {<Link to={`/folders/${folderId}/links/${link.id}/edit`} className="button" id="reg-log-button">
                           Edit</Link>}
                       </span>
                     </div>
@@ -263,7 +263,6 @@ export default function FolderOverview({ history, match }) {
 
 
 
-
     </section>
 
     <section id="right-side-folder-layout">
@@ -274,7 +273,7 @@ export default function FolderOverview({ history, match }) {
       </div>
 
       <div id="link-wrapper">
-        {<Link to={`/folders/${folderId}/tags/new-tag`} className="button" id="button-add-link">
+        {<Link to={`/folders/${folderId}/tags/new-tag`} className="button" id="button-add-tag">
           <img src='https://image.flaticon.com/icons/png/128/1828/1828926.png' id="add-link"></img> <p>   Add tags</p>
         </Link>}
       </div>
