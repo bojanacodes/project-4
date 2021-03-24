@@ -130,12 +130,19 @@ def add_user_to_folder(folder_id):
 def remove_folder(folder_id):
 
     folder = Folder.query.get(folder_id)
+    user = g.current_user
 
     try:
-        for item in g.current_user.folders:
+        for item in user.folders:
             if item.id == folder.id:
-
-                folder.remove()
+                
+                if len(folder.users) > 1:
+                    
+                    folder.users.remove(user)
+                    folder.save()
+                    
+                else:
+                    folder.remove()
 
                 return { 'message': 'Folder deleted successfully' }, 200
 

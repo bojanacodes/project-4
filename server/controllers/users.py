@@ -46,14 +46,14 @@ def login():
     user = User.query.filter_by(email=request.json['email']).first()
 
     if not user:
-        return { 'message': 'No user found for this email' }
+        return { 'message': 'No user found for this email' }, 401
    
     if not user.validate_password(request.json['password']):
-        return { 'message' : 'You are not authorized' }, 402
+        return { 'message' : 'You are not authorized' }, 401
 
     token = user.generate_token()
 
-    return { 'token': token, 'message': 'Welcome back!' }
+    return { 'token': token, 'message': 'Welcome back!' }, 200
 
 
 

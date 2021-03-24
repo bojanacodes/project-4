@@ -80,7 +80,7 @@ def make_link(folder_id):
     try:
         
         link = link_schema.load(link_dictionary)
-        print('link in link controller', link)
+        # print('link in link controller', link)
     except ValidationError as e:
         return { 'errors': e.messages, 'messages': 'Something went wrong' }
 

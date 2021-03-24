@@ -20,6 +20,7 @@ export default function Login({ history }) {
     try {
       const { data } = await axios.post('/api/login', formData)
       if (localStorage) {
+        console.log('boolean', Boolean(localStorage))
         localStorage.setItem('token', data.token)
       }
       history.push('/Workspace')
