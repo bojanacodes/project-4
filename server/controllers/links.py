@@ -162,7 +162,7 @@ def create_comment(folder_id, link_id):
                 return comment_schema.jsonify(comment)
 
     except ValidationError as e:
-        return { 'errors': e.messages, 'messages': 'Something went wrong' }
+        return { 'errors': e.messages, 'messages': 'Something went wrong' }, 400
 
     
     return {'errors': 'This is not your folder!'}, 401
@@ -184,7 +184,7 @@ def remove_comment(folder_id, link_id, comment_id):
                 return link_schema.jsonify(link), 202
     
     except ValidationError as e:
-        return { 'errors': e.messages, 'messages': 'Something went wrong' }
+        return { 'errors': e.messages, 'messages': 'Something went wrong' }, 400
 
     return {'errors': 'This is not your comment!'}, 401
 
@@ -212,7 +212,7 @@ def update_comment(folder_id, link_id, comment_id):
                 return link_schema.jsonify(link), 201
                 
     except ValidationError as e:
-        return { 'errors': e.messages, 'messages': 'Something went wrong' }
+        return { 'errors': e.messages, 'messages': 'Something went wrong' }, 400
 
     return {'errors': 'This is not your comment!'}, 401
 

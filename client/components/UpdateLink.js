@@ -11,10 +11,12 @@ export default function UpdateLink({ history, match }) {
   const [formData, updateFormData] = useState({
     name: '',
     description: '',
-    url: '',
+    URL: '',
     tags: [],
-    // importance: ''
+    importance: checkedRadio
   })
+
+  const [checkedRadio, updateCheckedRadio] = useState('')
 
   const token = localStorage.getItem('token')
 
@@ -31,8 +33,6 @@ export default function UpdateLink({ history, match }) {
 
         data.map(item => tagNames.push({ 'label': item.name, 'value': item.name }))
 
-        // console.log('tag names', tagNames)
-
         updateTagsData(tagNames)
 
       } catch (err) {
@@ -47,14 +47,18 @@ export default function UpdateLink({ history, match }) {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(({ data }) => {
-        console.log('update link data', data)
+        
         const mappedFormData = {
           ...data,
+          URL: data.url,
           tags: data.tags.map(tag => {
-            return { value: tag, label: tag[0].toUpperCase() + tag.slice(1) }
+            return { value: tag.name, label: tag.name[0].toUpperCase() + tag.name.slice(1) }
           })
         }
+       
+        updateCheckedRadio(mappedFormData.importance)
         updateFormData(mappedFormData)
+
       })
   }, [])
 
@@ -85,7 +89,7 @@ export default function UpdateLink({ history, match }) {
 
     tags.forEach(item => {
       try {
-        const { data } = axios.post(`/api/folders/${folderId}/links/${linkId}/tags`, { 'name': item.value }, {
+        const { data } = axios.put(`/api/folders/${folderId}/links/${linkId}/tags`, { 'name': item.value }, {
           headers: { Authorization: `Bearer ${token}` }
         })
           .then(data => {
@@ -118,13 +122,13 @@ export default function UpdateLink({ history, match }) {
     }
 
 
-    const newFormDataToPost = { 'name': newFormData.name, 'description': newFormData.description, 'url': newFormData.URL, 'image': newFormData.image, 'importance': newFormData.importance }
+    const newFormDataToPost = { 'name': newFormData.name, 'description': newFormData.description, 'url': newFormData.URL, 'importance': newFormData.importance }
 
 
     // console.log('newformdatatopost', newFormDataToPost)
 
     try {
-      const { data } = await axios.post(`/api/folders/${folderId}/links`, newFormDataToPost, {
+      const { data } = await axios.put(`/api/folders/${folderId}/links/${linkId}`, newFormDataToPost, {
         headers: { Authorization: `Bearer ${token}` }
       })
       // console.log('data', data)
@@ -162,7 +166,11 @@ export default function UpdateLink({ history, match }) {
           handleRadioChange={handleChange}
           formData={formData}
           tagsData={tagsData}
+          checkedRadio={checkedRadio}
+
         />
+
+
       </article>
     </div>
   </div>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
+
 
 import CreatableSelect from 'react-select/creatable'
 
@@ -7,8 +7,7 @@ import CreatableSelect from 'react-select/creatable'
 const inputFields = ['name', 'description', 'URL']
 
 
-export default function LinkForm({ formData, handleSubmitFields, handleChange, handleTagChange, tagsData }) {
-
+export default function LinkForm({ formData, handleSubmitFields, handleChange, handleTagChange, tagsData, checkedRadio }) {
 
 
   return <div className="section" id="link-form-section">
@@ -58,15 +57,15 @@ export default function LinkForm({ formData, handleSubmitFields, handleChange, h
         </label>
         <div className="control">
           <label className="radio">
-            <input type="radio" name="importance" value="High" onChange={handleChange} />
+            <input type="radio" name="importance" value="High" onChange={handleChange} checked={checkedRadio === 'High'}/>
               High
           </label>
           <label className="radio">
-            <input type="radio" name="importance" value="Medium" onChange={handleChange} />
+            <input type="radio" name="importance" value="Medium" onChange={handleChange} checked={checkedRadio === 'Medium'}/>
                 Medium
           </label>
           <label className="radio">
-            <input type="radio" name="importance" value="Low" onChange={handleChange} />
+            <input type="radio" name="importance" value="Low" onChange={handleChange} checked={checkedRadio === 'Low'}/>
                 Low
           </label>
         </div>

@@ -120,7 +120,7 @@ def add_user_to_folder(folder_id):
                 
 
     except ValidationError as e:
-        return { 'errors': e.messages, 'messages': 'Something went wrong' }
+        return { 'errors': e.messages, 'messages': 'Something went wrong' }, 400
 
     return {'errors': 'This is not your folder!'}, 401
 
@@ -147,7 +147,7 @@ def remove_folder(folder_id):
                 return { 'message': 'Folder deleted successfully' }, 200
 
     except ValidationError as e:
-        return { 'errors': e.messages, 'messages': 'Something went wrong' }
+        return { 'errors': e.messages, 'messages': 'Something went wrong' }, 400
 
     return {'errors': 'This is not your folder!'}, 401
 

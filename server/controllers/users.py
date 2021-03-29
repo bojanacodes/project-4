@@ -9,8 +9,6 @@ user_schema = UserSchema()
 
 router = Blueprint(__name__, "users")
 
-# ! To Do: Add PUT and DEL routes, add secure routes
-
 @router.route("/test", methods=["GET"])
 def test():
     test_data = {
@@ -26,18 +24,11 @@ def signup():
         user = user_schema.load(request.json)
 
     except ValidationError as e:
-        return { 'errors': e.messages, 'messages': 'Something went wrong.' }
+        return { 'errors': e.messages, 'messages': 'Something went wrong.' }, 400
 
     user.save()
     print("Sign up succesfull")
     return user_schema.jsonify(user)
-
-# ! Remove before deploying
-@router.route("/users", methods=["GET"])
-def get_all_the_users():
-
-    users = User.query.all()
-    return user_schema.jsonify(users, many=True), 200
 
 
 @router.route('/login', methods=['POST'])
@@ -46,7 +37,7 @@ def login():
     user = User.query.filter_by(email=request.json['email']).first()
 
     if not user:
-        return { 'message': 'No user found for this email' }, 401
+        return { 'message': 'No user found for this email' }, 404
    
     if not user.validate_password(request.json['password']):
         return { 'message' : 'You are not authorized' }, 401

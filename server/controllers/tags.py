@@ -101,21 +101,16 @@ def post_tags_to_link(folder_id, link_id):
             if item.id == folder_id:
 
                 link = Link.query.get(link_id)
-                print('link in tags controller', link)
-
-                print('link in post tags to link', link)
-                print('item', item)
                 
                 link.tags.append(tag)
                 link.save()
-                print('link tags', link.tags)
 
         # ! Check if this is what should be returned
                 
         return link_schema.jsonify(link), 200
 
     except ValidationError as e:
-        return {"errors": e.messages, "messages": "Something went wrong"}
+        return {"errors": e.messages, "messages": "Something went wrong"}, 400
 
     return {'errors': 'This is not your folder!'}, 401
     
@@ -137,7 +132,7 @@ def create_tag(folder_id):
                 folder.save()
                 return tag_schema.jsonify(tag), 200
     except ValidationError as e:
-        return {"errors": e.messages, "messages": "Something went wrong"}
+        return {"errors": e.messages, "messages": "Something went wrong"}, 400
 
     return {'errors': 'This is not your folder!'}, 401
 
@@ -161,7 +156,7 @@ def update_tag(tag_id, folder_id):
                 return tag_schema.jsonify(tag), 201
 
     except ValidationError as e:
-        return {"errors": e.messages, "messages": "Something went wrong"}
+        return {"errors": e.messages, "messages": "Something went wrong"}, 400
 
     return {'errors': 'This is not your folder!'}, 401
 
