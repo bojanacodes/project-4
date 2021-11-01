@@ -111,11 +111,15 @@ export default function UpdateLink({ history, match }) {
       //tags: formData.tags.map(type => type.value)
     }
 
-    // console.log('new form data', newFormData)
+    console.log('new form data', newFormData)
 
     const newTags = newFormData.tags.filter(item => item.__isNew__ === true)
 
     const tags = newFormData.tags
+
+    console.log('new tags', newTags)
+
+  
 
     if (newTags.length > 0) {
       handleNewTagsSubmit(newTags)
@@ -132,7 +136,9 @@ export default function UpdateLink({ history, match }) {
         headers: { Authorization: `Bearer ${token}` }
       })
       // console.log('data', data)
-      const linkId = data.id
+      // const linkId = data.id
+
+      
 
       if (tags.length > 0) {
         handleSubmitTags(tags, linkId)

@@ -19,7 +19,7 @@ export default function Home() {
             UReaLm
           </p>
           <p className="subtitle" id="home-subtitle">
-            Keep your links orgnized. For real.
+            Keep your links organized. For real.
           </p>
         </div>
       </div>

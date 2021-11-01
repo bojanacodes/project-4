@@ -246,6 +246,7 @@ export default function FolderOverview({ history, match }) {
                       <span>
                         {<Link to={`/folders/${folderId}/links/${link.id}/edit`} className="button" id="reg-log-button">
                           Edit</Link>}
+
                       </span>
                     </div>
                     <div id="link-card-text">
