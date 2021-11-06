@@ -61,7 +61,7 @@ export default function FolderOverview({ history, match }) {
         })
         if (data) {
 
-          console.log('fetch tags data', data)
+          // console.log('fetch tags data', data)
           updateTagsNames(data)
           updateLoadingTags(false)
           // console.log('second fetch tags data', data)

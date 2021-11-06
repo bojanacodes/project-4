@@ -22,8 +22,8 @@ export default function Comments({ linkId, folderId }) {
 
         )
         updatePage(data)
-        console.log('this should be data')
-        console.log(data)
+        // console.log('this should be data')
+        // console.log(data)
       } catch (err) {
         console.log(err)
       }

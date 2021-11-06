@@ -20,7 +20,7 @@ const NavBar = ({ history }) => {
       // console.log(token)
       localStorage.clear()
       // localStorage.removeItem(token)
-      console.log(localStorage)
+      // console.log(localStorage)
       updateEmail('')
       history.push('/login')
     } catch (err) {
@@ -41,11 +41,11 @@ const NavBar = ({ history }) => {
             headers: { Authorization: `Bearer ${token}` }
           })
           if (data) {
-            console.log('this is data.email ' + data)
-            console.log(data)
+            // console.log('this is data.email ' + data)
+            // console.log(data)
             updateEmail(data.email)
-            console.log('email')
-            console.log(email)
+            // console.log('email')
+            // console.log(email)
           }
         } catch (err) {
           console.log(err)

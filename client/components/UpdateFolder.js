@@ -32,8 +32,8 @@ export default function UpdateFolder({ history, match }) {
       const { data } = await axios.post(`/api/folders/${folderId}/users`, newFormEmailData, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log(data._id)
-      console.log('is something getting through')
+      // console.log(data._id)
+      // console.log('is something getting through')
       history.push('/workspace')
     } catch (err) {
       console.log(err.response.data)
@@ -51,7 +51,7 @@ export default function UpdateFolder({ history, match }) {
       const { data } = await axios.put(`/api/folders/${folderId}`, newFormData, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log(data._id)
+      // console.log(data._id)
       history.push('/workspace')
     } catch (err) {
       console.log(err.response.data)
@@ -68,7 +68,7 @@ export default function UpdateFolder({ history, match }) {
           headers: { Authorization: `Bearer ${token}` }
         })
 
-        console.log(data)
+        // console.log(data)
         updateFormData(data)
         updateLoading(false)
       } catch (err) {

@@ -45,6 +45,8 @@ export default function CreateLink({ match, history }) {
     // console.log('handle change event', event.target.name, event.target.value)
 
     updateFormData({ ...formData, [event.target.name]: event.target.value })
+
+
   }
 
   function handleNewTagsSubmit(newTags) {
@@ -80,24 +82,6 @@ export default function CreateLink({ match, history }) {
     })
 
   }
-
-  //!! Testing - get image
-
-
-  // function getImage(newFormDataToPost) {
-  //   console.log("in the get image function")
-  //   console.log('form data url', newFormDataToPost.url)
-  //   try {
-  //     const { data } = axios.get(`${newFormDataToPost.url}`)
-  //       .then(data => {
-  //         console.log('data from url get', data)
-  //       })
-
-
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
 
 

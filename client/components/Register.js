@@ -36,15 +36,15 @@ export default function Register({ history }) {
     event.preventDefault()
     try {
       const { data } = await axios.post('/api/signup', formData)
-      console.log(data)
+      // console.log(data)
 
       history.push('/login')
     } catch (err) {
       updateErrors(err.response.data.errors)
-      console.log(errors)
+      // console.log(errors)
     }
   }
-  console.log(formData)
+  // console.log(formData)
 
   return <div className="section">
     <div className="container" id="container-form">

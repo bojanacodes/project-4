@@ -8,8 +8,6 @@ const CreateTag = ({ match, history }) => {
   // export default function CreateTag({ match, history }) {
 
 
-  console.log('loading create tag page')
-
   const folderId = match.params.folderId
 
   // const [formData, updateFormData] = useState({
@@ -57,8 +55,6 @@ const CreateTag = ({ match, history }) => {
 
     const newTags = formData.tags.filter(item => item.__isNew__ === true)
 
-    console.log('in your submit')
-
     newTags.forEach(item => {
       try {
         const { data } = axios.post(`/api/folders/${folderId}/tags`, { 'name': item.value }, {
@@ -73,15 +69,15 @@ const CreateTag = ({ match, history }) => {
       }
     })
 
-    console.log('above the timeout')
+    // console.log('above the timeout')
     // history.push(`/folders/${folderId}`)
 
     setTimeout(() => {
-      console.log('in your timeout')
+      // console.log('in your timeout')
       history.push(`/folders/${folderId}`)
     }, 3000)
 
-    console.log('after timeout')
+    // console.log('after timeout')
 
     history.push(`/folders/${folderId}/tags/`)
 

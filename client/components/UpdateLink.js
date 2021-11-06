@@ -68,7 +68,7 @@ export default function UpdateLink({ history, match }) {
 
   }
 
-  function handleNewTagsSubmit(newTags) {
+   function handleNewTagsSubmit(newTags) {
 
     newTags.forEach(item => {
       try {
@@ -84,16 +84,16 @@ export default function UpdateLink({ history, match }) {
     })
   }
 
-  async function handleSubmitTags(tags, linkId) {
+   function handleSubmitTags(tags, linkId) {
     // event.preventDefault() - add in as param in line above
 
     tags.forEach(item => {
       try {
-        const { data } = axios.put(`/api/folders/${folderId}/links/${linkId}/tags`, { 'name': item.value }, {
+        const { data } =  axios.post(`/api/folders/${folderId}/links/${linkId}/tags`, { 'name': item.value }, {
           headers: { Authorization: `Bearer ${token}` }
         })
           .then(data => {
-            console.log('data after posting tags to newly created link', data)
+            console.log('data after posting tags to newly updated link', data)
           })
       } catch (err) {
         console.log(err.response.data)
@@ -112,6 +112,7 @@ export default function UpdateLink({ history, match }) {
     }
 
     console.log('new form data', newFormData)
+    
 
     const newTags = newFormData.tags.filter(item => item.__isNew__ === true)
 
@@ -131,6 +132,10 @@ export default function UpdateLink({ history, match }) {
 
     // console.log('newformdatatopost', newFormDataToPost)
 
+    if (tags.length > 0) {
+      handleSubmitTags(tags, linkId)
+    }
+
     try {
       const { data } = await axios.put(`/api/folders/${folderId}/links/${linkId}`, newFormDataToPost, {
         headers: { Authorization: `Bearer ${token}` }
@@ -138,14 +143,7 @@ export default function UpdateLink({ history, match }) {
       // console.log('data', data)
       // const linkId = data.id
 
-      
-
-      if (tags.length > 0) {
-        handleSubmitTags(tags, linkId)
-      }
-
       // getImage(newFormDataToPost)
-
 
       history.push(`/folders/${folderId}/links/${linkId}`)
       // history.push(`/folders/${folderId}/links`)

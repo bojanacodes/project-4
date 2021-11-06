@@ -21,9 +21,9 @@ export default function ViewLink({ match, history }) {
           headers: { Authorization: `Bearer ${token}` }
         })
         updateLinkData(data)
-        console.log(data.tags)
+        // console.log(data.tags)
         updateLinkDataTags(data.tags)
-        console.log('link data tags in use effect', data.tags)
+        // console.log('link data tags in use effect', data.tags)
         updateLoading(false)
         // console.log('show me the link data')
         // console.log(linkData)

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function UserProfile({ history, match }) {
 
-  console.log(match.params.userId)
+  // console.log(match.params.userId)
 
   // const userId = match.params.userId
 
