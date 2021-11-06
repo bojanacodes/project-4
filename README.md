@@ -26,7 +26,7 @@ We set out to allow users to:
 * view a folder's links sorted by date added or by importance 
 * comment on a link
 
-The app is deployed here: https://urealm.herokuapp.com/
+The app is deployed here: https://project4urealm.herokuapp.com/
 
 
 ## Technologies used
