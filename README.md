@@ -330,19 +330,3 @@ We had lots of ideas but had to prioritise features in order to have a functioni
 * **Creating a folder admin user.** By default this would be the user who created the folder. This user could reassign the admin rights to another user with access to the folder. This user would have more permissions than the others who have access to the folder, for example being able to delete all links or comments, while the other users could only delete their own links and comments.
 * **Displaying the username of the user who posted a link and filtering by a username.** This could be especially useful in an educational context - the instructor and all students could post links, but a student may sometimes want to view only the links supplied by the instructor.
 * **Search** This would allow a user to search for terms found either in the link name or in the description as well. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
